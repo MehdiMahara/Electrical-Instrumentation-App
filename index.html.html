@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>محاسبه‌گر مهندسی برق و ابزار دقیق</title>
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkVuZ2luZWVyaW5nIENhbGN1bGF0b3IgLSBFbGVjdHJpY2FsICYgSW5zdHJ1bWVudGF0aW9uIiwgInNob3J0X25hbWUiOiAiRW5nQ2FsYyIsICJzdGFydF91cmwiOiAiLiIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGYxNzIwIiwgInRoZW1lX2NvbG9yIjogIiMyZmE4ZTAiLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBuYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNuSUhacFpYZENiM2c5SnpBZ01DQTFNVElnTlRFeUp6NDhjbVZqZENCM2FXUjBhRDBuTlRFeUp5Qm9aV2xuYUhROUp6VXhNaWNnY25nOUp6azJKeUJtYVd4c1BTY2pNbVpoT0dVd0p5OCtQSEJoZEdnZ1pEMG5UVEk0TUNBek1pQXhNakFnTWprMmFEazJiQzAwTUNBeE9EUWdNakUyTFRNeU1HZ3RNVEV5ZWljZ1ptbHNiRDBuSTJabVptWm1aaWN2UGp3dmMzWm5QZz09IiwgInNpemVzIjogIjUxMng1MTIiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dfQ==">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJz48cmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgcng9Jzk2JyBmaWxsPScjMmZhOGUwJy8+PHBhdGggZD0nTTI4MCAzMiAxMjAgMjk2aDk2bC00MCAxODQgMjE2LTMyMGgtMTEyeicgZmlsbD0nI2ZmZmZmZicvPjwvc3ZnPg==">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJz48cmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgcng9Jzk2JyBmaWxsPScjMmZhOGUwJy8+PHBhdGggZD0nTTI4MCAzMiAxMjAgMjk2aDk2bC00MCAxODQgMjE2LTMyMGgtMTEyeicgZmlsbD0nI2ZmZmZmZicvPjwvc3ZnPg==">
+<meta name="theme-color" content="#2fa8e0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1720; --panel:#16212c; --panel2:#1c2a37; --accent:#2fa8e0; --accent2:#3ddc97;
+  --text:#e8eef3; --muted:#93a4b3; --border:#26374a; --danger:#e0603f;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#f3f6f9;--panel:#ffffff;--panel2:#eef2f6;--text:#16212c;--muted:#5c6b7a;--border:#dbe3ea;}
+}
+:root[data-theme="dark"]{--bg:#0f1720;--panel:#16212c;--panel2:#1c2a37;--text:#e8eef3;--muted:#93a4b3;--border:#26374a;}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;
+  padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0);
+  -webkit-user-select:none;user-select:none;}
+input,textarea,select{-webkit-user-select:text;user-select:text}
+header{position:sticky;top:0;top:env(safe-area-inset-top,0);background:var(--panel);border-bottom:1px solid var(--border);
+  padding:14px 16px;z-index:10;}
+header h1{margin:0;font-size:18px;font-weight:700;color:var(--accent)}
+header p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.tabs{display:flex;gap:6px;padding:10px 12px;overflow-x:auto;background:var(--panel);border-bottom:1px solid var(--border);}
+.tab{flex:0 0 auto;padding:8px 14px;border-radius:20px;background:var(--panel2);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;border:1px solid var(--border)}
+.tab.active{background:var(--accent);color:#04202c;border-color:var(--accent)}
+main{max-width:760px;margin:0 auto;padding:14px 12px 40px}
+.section{display:none}
+.section.active{display:block}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px}
+.card h2{margin:0 0 4px;font-size:15px;color:var(--accent2)}
+.card .desc{color:var(--muted);font-size:12px;margin-bottom:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.field{flex:1 1 130px;display:flex;flex-direction:column;gap:3px}
+.field label{font-size:11px;color:var(--muted)}
+.field input,.field select{background:var(--panel2);border:1px solid var(--border);border-radius:8px;color:var(--text);
+  padding:8px;font-size:14px;font-family:inherit;width:100%}
+.btnrow{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+button{cursor:pointer;border:none;border-radius:8px;padding:9px 14px;font-family:inherit;font-size:13px;font-weight:600}
+.btn-calc{background:var(--accent);color:#04202c}
+.btn-add{background:var(--panel2);color:var(--accent2);border:1px solid var(--accent2)}
+.btn-clear{background:var(--panel2);color:var(--danger);border:1px solid var(--danger)}
+.btn-print{background:var(--accent2);color:#052015}
+.result{margin-top:10px;padding:10px;border-radius:8px;background:var(--panel2);font-size:14px;display:none}
+.result b{color:var(--accent2)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid var(--border);padding:8px 6px;text-align:right}
+th{color:var(--muted);font-weight:600}
+.letterhead{display:flex;gap:8px;margin-bottom:10px}
+#report-empty{color:var(--muted);font-size:13px;padding:10px}
+@media print{
+  header,.tabs,.btnrow,#tab-elec,#tab-inst,#searchWrap{display:none!important}
+  body{background:#fff;color:#000}
+  .card{border-color:#999}
+  #report-title{display:block!important}
+}
+#report-title{display:none;text-align:center;margin-bottom:12px}
+#gate{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;
+  padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+#gate .box{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 20px;max-width:360px;width:100%;text-align:center}
+#gate .box .ic{font-size:34px;margin-bottom:6px}
+#gate .box h2{margin:0 0 4px;font-size:17px;color:var(--accent)}
+#gate .box p{color:var(--muted);font-size:12px;margin:0 0 16px}
+#gate input{width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:9px;color:var(--text);
+  padding:11px;font-size:14px;font-family:inherit;margin-bottom:10px}
+#gate button{width:100%;background:var(--accent);color:#04202c;padding:11px;border:none;border-radius:9px;font-weight:700;font-size:14px}
+#gate .err{color:var(--danger);font-size:11px;min-height:14px;margin-bottom:6px}
+body.locked{overflow:hidden}
+#searchWrap{position:relative;padding:10px 12px;background:var(--panel);border-bottom:1px solid var(--border)}
+#searchBox{width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:20px;color:var(--text);
+  padding:9px 14px;font-size:13px;font-family:inherit}
+#searchResults{position:absolute;top:100%;left:12px;right:12px;background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;margin-top:4px;max-height:260px;overflow-y:auto;display:none;z-index:20;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+#searchResults div{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer}
+#searchResults div:last-child{border-bottom:none}
+#searchResults div:hover{background:var(--panel2)}
+.flash{animation:flashbg 1.2s ease}
+@keyframes flashbg{0%{background:var(--accent);opacity:.35}100%{background:transparent;opacity:1}}
+</style>
+</head>
+<body>
+<div id="searchWrap">
+  <input id="searchBox" type="text" placeholder="جستجوی فرمول یا محاسبه... (مثلاً: افت ولتاژ)" oninput="doSearch(this.value)">
+  <div id="searchResults"></div>
+</div>
+<div id="gate">
+  <div class="box">
+    <div class="ic">⚡</div>
+    <h2>محاسبه‌گر مهندسی برق و ابزار دقیق</h2>
+    <p>برای استفاده، لطفاً شماره تماس و نام خود را وارد کنید</p>
+    <input id="g_phone" type="tel" placeholder="شماره تلفن همراه" inputmode="numeric">
+    <input id="g_name" type="text" placeholder="نام و نام خانوادگی">
+    <div class="err" id="g_err"></div>
+    <button onclick="submitGate()">ورود به اپلیکیشن</button>
+  </div>
+</div>
+<header>
+  <h1>محاسبه‌گر مهندسی برق و ابزار دقیق</h1>
+  <p>فرمول‌های کاربردی طراحی برق و اینسترومنت — همراه با گزارش قابل چاپ</p>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="elec" onclick="showTab('elec')">برق</div>
+  <div class="tab" data-tab="light" onclick="showTab('light')">روشنایی و کابل</div>
+  <div class="tab" data-tab="pump" onclick="showTab('pump')">پمپ و دبی</div>
+  <div class="tab" data-tab="earth" onclick="showTab('earth')">اتصال زمین</div>
+  <div class="tab" data-tab="inst" onclick="showTab('inst')">ابزار دقیق</div>
+  <div class="tab" data-tab="report" onclick="showTab('report')">گزارش</div>
+</div>
+
+<main>
+
+<!-- ELECTRICAL -->
+<section id="tab-elec" class="section active">
+
+<div class="card">
+<h2>قانون اهم و توان</h2>
+<div class="desc">دو مقدار را وارد کنید، بقیه محاسبه می‌شود (V=IR, P=VI)</div>
+<div class="row">
+ <div class="field"><label>ولتاژ (V)</label><input id="oh_v" type="number"></div>
+ <div class="field"><label>جریان (A)</label><input id="oh_i" type="number"></div>
+ <div class="field"><label>مقاومت (Ω)</label><input id="oh_r" type="number"></div>
+</div>
+<div class="btnrow">
+ <button class="btn-calc" onclick="calcOhm()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('ohm')">افزودن به گزارش</button>
+</div>
+<div class="result" id="r_ohm"></div>
+</div>
+
+<div class="card">
+<h2>توان سه‌فاز</h2>
+<div class="desc">P = √3 × V × I × cosφ</div>
+<div class="row">
+ <div class="field"><label>ولتاژ خط (V)</label><input id="p3_v" type="number" value="400"></div>
+ <div class="field"><label>جریان (A)</label><input id="p3_i" type="number"></div>
+ <div class="field"><label>cosφ</label><input id="p3_pf" type="number" value="0.85" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calc3P()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('p3')">افزودن به گزارش</button></div>
+<div class="result" id="r_p3"></div>
+</div>
+
+<div class="card">
+<h2>افت ولتاژ کابل</h2>
+<div class="desc">درصد افت ولتاژ برای مسیر رفت‌وبرگشت (تک‌فاز یا سه‌فاز)</div>
+<div class="row">
+ <div class="field"><label>نوع</label><select id="vd_type"><option value="1">تک‌فاز</option><option value="3">سه‌فاز</option></select></div>
+ <div class="field"><label>جریان (A)</label><input id="vd_i" type="number"></div>
+ <div class="field"><label>طول کابل (m)</label><input id="vd_l" type="number"></div>
+</div>
+<div class="row">
+ <div class="field"><label>مقاومت کابل (Ω/km)</label><input id="vd_r" type="number" step="0.01"></div>
+ <div class="field"><label>ولتاژ نامی (V)</label><input id="vd_v" type="number" value="400"></div>
+ <div class="field"><label>cosφ</label><input id="vd_pf" type="number" value="0.9" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcVD()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('vd')">افزودن به گزارش</button></div>
+<div class="result" id="r_vd"></div>
+</div>
+
+<div class="card">
+<h2>اصلاح ضریب توان (خازن)</h2>
+<div class="desc">kVAR لازم برای رساندن cosφ فعلی به cosφ هدف</div>
+<div class="row">
+ <div class="field"><label>توان اکتیو P (kW)</label><input id="pf_p" type="number"></div>
+ <div class="field"><label>cosφ فعلی</label><input id="pf_c1" type="number" step="0.01"></div>
+ <div class="field"><label>cosφ هدف</label><input id="pf_c2" type="number" step="0.01" value="0.95"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcPFC()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('pfc')">افزودن به گزارش</button></div>
+<div class="result" id="r_pfc"></div>
+</div>
+
+<div class="card">
+<h2>سایزینگ دقیق بانک خازنی (ظرفیت و جریان)</h2>
+<div class="desc">C(delta) = Qc/(2πf×V²) | C(star) = 3×C(delta) | Ic = Qc/(√3×V)</div>
+<div class="row">
+ <div class="field"><label>توان راکتیو Qc (kVAR)</label><input id="cb_q" type="number"></div>
+ <div class="field"><label>ولتاژ خط V (V)</label><input id="cb_v" type="number" value="400"></div>
+ <div class="field"><label>فرکانس f (Hz)</label><input id="cb_f" type="number" value="50"></div>
+ <div class="field"><label>نوع اتصال خازن‌ها</label><select id="cb_type"><option value="delta">مثلث (Delta)</option><option value="star">ستاره (Star)</option></select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcCapBank()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('capbank')">افزودن به گزارش</button></div>
+<div class="result" id="r_capbank"></div>
+</div>
+
+<div class="card">
+<h2>بررسی فرکانس تشدید هارمونیکی بانک خازنی</h2>
+<div class="desc">fr = fn × √(Ssc/Qc) — بررسی نزدیکی به مرتبه هارمونیک‌های رایج (۵ام، ۷ام، ۱۱ام)</div>
+<div class="row">
+ <div class="field"><label>توان اتصال کوتاه شبکه Ssc (MVA)</label><input id="rf_ssc" type="number"></div>
+ <div class="field"><label>توان بانک خازنی Qc (MVAr)</label><input id="rf_qc" type="number" step="0.01"></div>
+ <div class="field"><label>فرکانس پایه fn (Hz)</label><input id="rf_fn" type="number" value="50"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcResonance()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('resonance')">افزودن به گزارش</button></div>
+<div class="result" id="r_resonance"></div>
+</div>
+
+<div class="card">
+<h2>مقاومت تخلیه بانک خازنی (Discharge Resistor)</h2>
+<div class="desc">R = t / (C × ln(Un√2/Vfinal)) — طبق الزام تخلیه استاندارد IEC 60831</div>
+<div class="row">
+ <div class="field"><label>ظرفیت خازن C (µF)</label><input id="dr_c" type="number"></div>
+ <div class="field"><label>ولتاژ نامی Un (V)</label><input id="dr_v" type="number" value="400"></div>
+ <div class="field"><label>زمان تخلیه مجاز</label><select id="dr_t"><option value="180">۱۸۰ ثانیه (استاندارد عمومی)</option><option value="10">۱۰ ثانیه (دسترسی سریع/نصب داخل تابلو)</option></select></div>
+ <div class="field"><label>ولتاژ باقیمانده هدف (V)</label><input id="dr_vf" type="number" value="50"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcDischarge()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('discharge')">افزودن به گزارش</button></div>
+<div class="result" id="r_discharge"></div>
+</div>
+
+<div class="card">
+<h2>انتخاب تجهیزات حفاظتی بانک خازنی</h2>
+<div class="desc">ضرایب رایج طبق IEC 60831 و راهنمای سازندگان: کنتاکتور ≥۱.۵×In، فیوز ≥۱.۷×In، کابل/کلید ≥۱.۳×In</div>
+<div class="row">
+ <div class="field"><label>جریان نامی بانک In (A)</label><input id="cp_i" type="number"></div>
+ <div class="field"><label>ضریب کنتاکتور</label><input id="cp_k1" type="number" value="1.5" step="0.05"></div>
+ <div class="field"><label>ضریب فیوز</label><input id="cp_k2" type="number" value="1.7" step="0.05"></div>
+ <div class="field"><label>ضریب کابل/کلید</label><input id="cp_k3" type="number" value="1.3" step="0.05"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcCapProtect()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('capprotect')">افزودن به گزارش</button></div>
+<div class="result" id="r_capprotect"></div>
+</div>
+
+<div class="card">
+<h2>جریان نامی موتور سه‌فاز</h2>
+<div class="desc">I = P / (√3 × V × cosφ × η)</div>
+<div class="row">
+ <div class="field"><label>توان (kW)</label><input id="mo_p" type="number"></div>
+ <div class="field"><label>ولتاژ (V)</label><input id="mo_v" type="number" value="400"></div>
+ <div class="field"><label>cosφ</label><input id="mo_pf" type="number" value="0.85" step="0.01"></div>
+ <div class="field"><label>راندمان η</label><input id="mo_eff" type="number" value="0.9" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcMotor()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('motor')">افزودن به گزارش</button></div>
+<div class="result" id="r_motor"></div>
+</div>
+
+<div class="card">
+<h2>جریان ترانسفورماتور</h2>
+<div class="desc">I = kVA×1000 / (√3×V) برای سه‌فاز یا kVA×1000/V برای تک‌فاز</div>
+<div class="row">
+ <div class="field"><label>نوع</label><select id="tr_type"><option value="3">سه‌فاز</option><option value="1">تک‌فاز</option></select></div>
+ <div class="field"><label>ظرفیت (kVA)</label><input id="tr_kva" type="number"></div>
+ <div class="field"><label>ولتاژ (V)</label><input id="tr_v" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcTrans()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('trans')">افزودن به گزارش</button></div>
+<div class="result" id="r_trans"></div>
+</div>
+
+<div class="card">
+<h2>جریان اتصال کوتاه سه‌فاز (تقریبی)</h2>
+<div class="desc">Isc = V / (√3 × Ztotal)</div>
+<div class="row">
+ <div class="field"><label>ولتاژ خط (V)</label><input id="sc_v" type="number" value="400"></div>
+ <div class="field"><label>امپدانس مسیر Z (Ω)</label><input id="sc_z" type="number" step="0.001"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcSC()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('sc')">افزودن به گزارش</button></div>
+<div class="result" id="r_sc"></div>
+</div>
+
+<div class="card">
+<h2>سایز کلید (بریکر/فیوز)</h2>
+<div class="desc">In = ضریب اطمینان × جریان بار، سپس گرد به بالا به نزدیک‌ترین سایز استاندارد</div>
+<div class="row">
+ <div class="field"><label>جریان بار (A)</label><input id="br_i" type="number"></div>
+ <div class="field"><label>ضریب اطمینان</label><input id="br_k" type="number" value="1.25" step="0.05"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcBreaker()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('br')">افزودن به گزارش</button></div>
+<div class="result" id="r_br"></div>
+</div>
+
+<div class="card">
+<h2>ظرفیت قطع بریکر (Icu) بر اساس اتصال کوتاه</h2>
+<div class="desc">Icu کلید باید بزرگ‌تر یا مساوی جریان اتصال کوتاه محاسبه‌شده در نقطه نصب باشد</div>
+<div class="row">
+ <div class="field"><label>جریان اتصال کوتاه Isc (kA)</label><input id="icu_isc" type="number" step="0.1"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcIcu()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('icu')">افزودن به گزارش</button></div>
+<div class="result" id="r_icu"></div>
+</div>
+
+<div class="card">
+<h2>انتخاب کلاس منحنی تریپ (B/C/D)</h2>
+<div class="desc">محدوده جریان لحظه‌ای (مغناطیسی) قطع بر اساس نوع بار</div>
+<div class="row">
+ <div class="field"><label>جریان نامی کلید In (A)</label><input id="cu_in" type="number"></div>
+ <div class="field"><label>نوع بار</label><select id="cu_type">
+   <option value="B">روشنایی/مقاومتی (کلاس B، ۳ تا ۵×In)</option>
+   <option value="C">عمومی/موتور کوچک (کلاس C، ۵ تا ۱۰×In)</option>
+   <option value="D">ترانس/موتور با اینرش بالا (کلاس D، ۱۰ تا ۲۰×In)</option>
+ </select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcCurve()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('curve')">افزودن به گزارش</button></div>
+<div class="result" id="r_curve"></div>
+</div>
+
+<div class="card">
+<h2>هماهنگی حفاظت کابل و کلید (IEC 60364)</h2>
+<div class="desc">شرط لازم: Ib ≤ In ≤ Iz و I2 ≤ 1.45×Iz</div>
+<div class="row">
+ <div class="field"><label>جریان طراحی بار Ib (A)</label><input id="co_ib" type="number"></div>
+ <div class="field"><label>جریان نامی کلید In (A)</label><input id="co_in" type="number"></div>
+ <div class="field"><label>ظرفیت جریان‌بری کابل Iz (A)</label><input id="co_iz" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcCoord()">بررسی</button>
+ <button class="btn-add" onclick="addLast('coord')">افزودن به گزارش</button></div>
+<div class="result" id="r_coord"></div>
+</div>
+
+<div class="card">
+<h2>انتخاب بی‌متال (رله حرارتی) موتور</h2>
+<div class="desc">تنظیم جریان اضافه‌بار بر اساس جریان نامی موتور و نوع راه‌اندازی</div>
+<div class="row">
+ <div class="field"><label>جریان نامی موتور FLC (A)</label><input id="bm_flc" type="number"></div>
+ <div class="field"><label>ضریب سرویس SF</label><input id="bm_sf" type="number" value="1.15" step="0.01"></div>
+ <div class="field"><label>نوع راه‌اندازی</label><select id="bm_type"><option value="dol">مستقیم (DOL)</option><option value="sd">ستاره-مثلث (Star-Delta)</option></select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcBimetal()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('bimetal')">افزودن به گزارش</button></div>
+<div class="result" id="r_bimetal"></div>
+</div>
+
+<div class="card">
+<h2>جریان راه‌اندازی موتور (Starting Current)</h2>
+<div class="desc">روش رایج در مراجع مهندسی (نظیر راهنمای نصب Schneider Electric و مستندات فنی ABB) برای برآورد جریان راه‌اندازی</div>
+<div class="row">
+ <div class="field"><label>جریان نامی موتور FLC (A)</label><input id="ms_flc" type="number"></div>
+ <div class="field"><label>ضریب راه‌اندازی (۵ تا ۸ برای DOL)</label><input id="ms_k" type="number" value="6.5" step="0.1"></div>
+ <div class="field"><label>نوع راه‌اندازی</label><select id="ms_type"><option value="dol">مستقیم (DOL)</option><option value="sd">ستاره-مثلث (Star-Delta)</option></select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcMotorStart()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('mstart')">افزودن به گزارش</button></div>
+<div class="result" id="r_mstart"></div>
+</div>
+
+<div class="card">
+<h2>بررسی گزینش‌پذیری (Discrimination) بین دو کلید سری</h2>
+<div class="desc">قاعده تجربی رایج در راهنماهای Schneider/ABB: برای گزینش‌پذیری کامل جریان نامی کلید بالادست باید حداقل ۲ برابر کلید پایین‌دست باشد (بررسی دقیق نیازمند جداول گزینش‌پذیری سازنده است)</div>
+<div class="row">
+ <div class="field"><label>In کلید بالادست (A)</label><input id="ds_up" type="number"></div>
+ <div class="field"><label>In کلید پایین‌دست (A)</label><input id="ds_down" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcDiscrim()">بررسی</button>
+ <button class="btn-add" onclick="addLast('discrim')">افزودن به گزارش</button></div>
+<div class="result" id="r_discrim"></div>
+</div>
+
+<div class="card">
+<h2>تبدیل امپدانس ستاره-مثلث (Star-Delta)</h2>
+<div class="desc">Zdelta = 3 × Zstar</div>
+<div class="row">
+ <div class="field"><label>مقدار امپدانس/مقاومت (Ω)</label><input id="yd_z" type="number" step="0.01"></div>
+ <div class="field"><label>جهت تبدیل</label><select id="yd_dir"><option value="y2d">ستاره → مثلث (×۳)</option><option value="d2y">مثلث → ستاره (÷۳)</option></select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcYD()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('yd')">افزودن به گزارش</button></div>
+<div class="result" id="r_yd"></div>
+</div>
+
+<div class="card">
+<h2>راکتانس سلفی و خازنی</h2>
+<div class="desc">XL = 2πfL | XC = 1/(2πfC)</div>
+<div class="row">
+ <div class="field"><label>فرکانس f (Hz)</label><input id="rx_f" type="number" value="50"></div>
+ <div class="field"><label>اندوکتانس L (mH) — اختیاری</label><input id="rx_l" type="number" step="0.01"></div>
+ <div class="field"><label>خازن C (µF) — اختیاری</label><input id="rx_c" type="number" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcReactance()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('rx')">افزودن به گزارش</button></div>
+<div class="result" id="r_rx"></div>
+</div>
+
+<div class="card">
+<h2>جریان نول در بار سه‌فاز نامتعادل</h2>
+<div class="desc">In = |Ia + Ib×∠−120° + Ic×∠120°| — تخمین با فرض بارهای مقاومتی هم‌فاز</div>
+<div class="row">
+ <div class="field"><label>جریان فاز A (A)</label><input id="nc_a" type="number"></div>
+ <div class="field"><label>جریان فاز B (A)</label><input id="nc_b" type="number"></div>
+ <div class="field"><label>جریان فاز C (A)</label><input id="nc_c" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcNeutral()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('neutral')">افزودن به گزارش</button></div>
+<div class="result" id="r_neutral"></div>
+</div>
+
+<div class="card">
+<h2>محاسبه هزینه انرژی برق</h2>
+<div class="desc">هزینه = توان × ساعت کارکرد × تعداد روز × نرخ هر kWh</div>
+<div class="row">
+ <div class="field"><label>توان بار (kW)</label><input id="ec_p" type="number"></div>
+ <div class="field"><label>ساعت کارکرد روزانه (h)</label><input id="ec_h" type="number"></div>
+ <div class="field"><label>تعداد روز</label><input id="ec_d" type="number" value="30"></div>
+ <div class="field"><label>نرخ هر kWh (تومان)</label><input id="ec_r" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcEnergyCost()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('ecost')">افزودن به گزارش</button></div>
+<div class="result" id="r_ecost"></div>
+</div>
+
+<div class="card">
+<h2>سایزینگ باتری UPS (پشتیبان تابلو/کنترل)</h2>
+<div class="desc">Ah = (توان بار × زمان پشتیبانی) / (ولتاژ باتری × راندمان اینورتر × عمق تخلیه مجاز)</div>
+<div class="row">
+ <div class="field"><label>توان بار (W)</label><input id="ups_p" type="number"></div>
+ <div class="field"><label>زمان پشتیبانی مورد نیاز (h)</label><input id="ups_t" type="number" step="0.1"></div>
+ <div class="field"><label>ولتاژ باتری (V)</label><input id="ups_v" type="number" value="24"></div>
+</div>
+<div class="row">
+ <div class="field"><label>راندمان اینورتر</label><input id="ups_eff" type="number" value="0.9" step="0.01"></div>
+ <div class="field"><label>عمق تخلیه مجاز DoD</label><input id="ups_dod" type="number" value="0.8" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcUPS()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('ups')">افزودن به گزارش</button></div>
+<div class="result" id="r_ups"></div>
+</div>
+
+</section>
+
+<!-- LIGHTING & CABLE -->
+<section id="tab-light" class="section">
+
+<div class="card">
+<h2>محاسبه روشنایی (روش لومن)</h2>
+<div class="desc">N = (E × A) / (Φ × UF × MF) — تعداد چراغ مورد نیاز</div>
+<div class="row">
+ <div class="field"><label>شدت روشنایی مورد نیاز E (lux)</label><input id="li_e" type="number" value="300"></div>
+ <div class="field"><label>مساحت فضا A (m²)</label><input id="li_a" type="number"></div>
+</div>
+<div class="row">
+ <div class="field"><label>فلوکس هر چراغ Φ (lm)</label><input id="li_f" type="number" value="4000"></div>
+ <div class="field"><label>ضریب بهره‌وری UF</label><input id="li_uf" type="number" value="0.6" step="0.01"></div>
+ <div class="field"><label>ضریب افت MF</label><input id="li_mf" type="number" value="0.8" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcLight()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('light')">افزودن به گزارش</button></div>
+<div class="result" id="r_light"></div>
+</div>
+
+<div class="card">
+<h2>سایزینگ کابل (بر اساس ظرفیت جریان‌بری)</h2>
+<div class="desc">جریان طراحی با اعمال ضرایب کاهش، سپس انتخاب کوچک‌ترین سایز کابل مسی PVC هوایی (تقریبی طبق IEC، جهت تخمین اولیه — برای طراحی نهایی از جدول استاندارد کامل استفاده شود)</div>
+<div class="row">
+ <div class="field"><label>جریان بار (A)</label><input id="cs_i" type="number"></div>
+ <div class="field"><label>ضریب دما Ca</label><input id="cs_ca" type="number" value="1" step="0.01"></div>
+ <div class="field"><label>ضریب گروه‌بندی Cg</label><input id="cs_cg" type="number" value="1" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcCable()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('cable')">افزودن به گزارش</button></div>
+<div class="result" id="r_cable"></div>
+</div>
+
+<div class="card">
+<h2>پرشدگی کاندوئیت (Conduit Fill)</h2>
+<div class="desc">حداکثر مجاز: ۱ کابل=۵۳٪، ۲ کابل=۳۱٪، ۳ کابل و بیشتر=۴۰٪ از سطح مقطع لوله</div>
+<div class="row">
+ <div class="field"><label>قطر داخلی لوله (mm)</label><input id="cf_d" type="number"></div>
+ <div class="field"><label>قطر خارجی هر کابل (mm)</label><input id="cf_cd" type="number"></div>
+ <div class="field"><label>تعداد کابل</label><input id="cf_n" type="number" value="3"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcConduit()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('conduit')">افزودن به گزارش</button></div>
+<div class="result" id="r_conduit"></div>
+</div>
+
+<div class="card">
+<h2>بررسی حفاظت حرارتی کابل در برابر اتصال کوتاه (K²S²)</h2>
+<div class="desc">شرط ایمنی: (k×S)² ≥ I²×t — انرژی عبوری کلید نباید از ظرفیت تحمل حرارتی کابل بیشتر باشد</div>
+<div class="row">
+ <div class="field"><label>سایز کابل S (mm²)</label><input id="ks_s" type="number"></div>
+ <div class="field"><label>جنس/نوع کابل</label><select id="ks_mat">
+   <option value="cu_ins">مس - عایق‌دار (k=115)</option>
+   <option value="al_ins">آلومینیوم - عایق‌دار (k=76)</option>
+ </select></div>
+ <div class="field"><label>جریان اتصال کوتاه I (A)</label><input id="ks_i" type="number"></div>
+ <div class="field"><label>زمان قطع t (s)</label><input id="ks_t" type="number" value="0.4" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcKS()">بررسی</button>
+ <button class="btn-add" onclick="addLast('ks')">افزودن به گزارش</button></div>
+<div class="result" id="r_ks"></div>
+</div>
+
+</section>
+
+<!-- PUMP & FLOW -->
+<section id="tab-pump" class="section">
+
+<div class="card">
+<h2>توان هیدرولیکی پمپ</h2>
+<div class="desc">P(kW) = (Q[m³/h] × H[m] × SG) / (367 × η)</div>
+<div class="row">
+ <div class="field"><label>دبی Q (m³/h)</label><input id="pu_q" type="number"></div>
+ <div class="field"><label>هد H (m)</label><input id="pu_h" type="number"></div>
+ <div class="field"><label>چگالی نسبی SG</label><input id="pu_sg" type="number" value="1" step="0.01"></div>
+ <div class="field"><label>راندمان η</label><input id="pu_eff" type="number" value="0.7" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcPump()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('pump')">افزودن به گزارش</button></div>
+<div class="result" id="r_pump"></div>
+</div>
+
+<div class="card">
+<h2>قوانین تشابه پمپ (Affinity Laws)</h2>
+<div class="desc">تغییر دبی/هد/توان با تغییر دور پمپ</div>
+<div class="row">
+ <div class="field"><label>دور اولیه N1 (rpm)</label><input id="af_n1" type="number"></div>
+ <div class="field"><label>دور جدید N2 (rpm)</label><input id="af_n2" type="number"></div>
+</div>
+<div class="row">
+ <div class="field"><label>Q1 (m³/h)</label><input id="af_q1" type="number"></div>
+ <div class="field"><label>H1 (m)</label><input id="af_h1" type="number"></div>
+ <div class="field"><label>P1 (kW)</label><input id="af_p1" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcAffinity()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('affinity')">افزودن به گزارش</button></div>
+<div class="result" id="r_affinity"></div>
+</div>
+
+<div class="card">
+<h2>سرعت سیال در لوله</h2>
+<div class="desc">V = Q / A</div>
+<div class="row">
+ <div class="field"><label>دبی Q (m³/h)</label><input id="ve_q" type="number"></div>
+ <div class="field"><label>قطر داخلی لوله (mm)</label><input id="ve_d" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcVel()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('vel')">افزودن به گزارش</button></div>
+<div class="result" id="r_vel"></div>
+</div>
+
+<div class="card">
+<h2>عدد رینولدز (رژیم جریان)</h2>
+<div class="desc">Re = (ρ × V × D) / μ</div>
+<div class="row">
+ <div class="field"><label>چگالی ρ (kg/m³)</label><input id="re_rho" type="number" value="1000"></div>
+ <div class="field"><label>سرعت V (m/s)</label><input id="re_v" type="number"></div>
+ <div class="field"><label>قطر D (mm)</label><input id="re_d" type="number"></div>
+ <div class="field"><label>ویسکوزیته دینامیکی μ (Pa·s)</label><input id="re_mu" type="number" value="0.001" step="0.0001"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcRe()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('re')">افزودن به گزارش</button></div>
+<div class="result" id="r_re"></div>
+</div>
+
+<div class="card">
+<h2>NPSH موجود (NPSHa) — بررسی خطر کاویتاسیون</h2>
+<div class="desc">NPSHa = (Patm−Pvap)/(ρg) + Hs − Hf — باید بزرگ‌تر از NPSHr سازنده پمپ باشد</div>
+<div class="row">
+ <div class="field"><label>فشار اتمسفر (kPa)</label><input id="np_patm" type="number" value="101.325" step="0.01"></div>
+ <div class="field"><label>فشار بخار مایع در دمای کار (kPa)</label><input id="np_pvap" type="number" step="0.01"></div>
+ <div class="field"><label>چگالی مایع ρ (kg/m³)</label><input id="np_rho" type="number" value="1000"></div>
+</div>
+<div class="row">
+ <div class="field"><label>هد استاتیک مکش Hs (m) (+ اگر مخزن بالاتر، − اگر مکش از پایین)</label><input id="np_hs" type="number" step="0.01"></div>
+ <div class="field"><label>افت اصطکاک خط مکش Hf (m)</label><input id="np_hf" type="number" step="0.01"></div>
+ <div class="field"><label>NPSHr سازنده پمپ (m) — اختیاری</label><input id="np_npshr" type="number" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcNPSH()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('npsh')">افزودن به گزارش</button></div>
+<div class="result" id="r_npsh"></div>
+</div>
+
+<div class="card">
+<h2>افت اصطکاک لوله (Darcy-Weisbach)</h2>
+<div class="desc">hf = f×(L/D)×(V²/2g) — ضریب اصطکاک با معادله Swamee-Jain</div>
+<div class="row">
+ <div class="field"><label>طول لوله L (m)</label><input id="df_l" type="number"></div>
+ <div class="field"><label>قطر داخلی D (mm)</label><input id="df_d" type="number"></div>
+ <div class="field"><label>سرعت سیال V (m/s)</label><input id="df_v" type="number" step="0.01"></div>
+</div>
+<div class="row">
+ <div class="field"><label>جنس لوله (زبری)</label><select id="df_mat">
+   <option value="0.0015">PVC/پلاستیک (0.0015mm)</option>
+   <option value="0.045" selected>فولاد تجاری (0.045mm)</option>
+   <option value="0.15">فولاد گالوانیزه (0.15mm)</option>
+   <option value="0.26">چدن (0.26mm)</option>
+   <option value="1">بتن (1mm)</option>
+ </select></div>
+ <div class="field"><label>ویسکوزیته سینماتیک ν (m²/s)</label><input id="df_nu" type="number" value="0.000001" step="0.0000001"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcDarcy()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('darcy')">افزودن به گزارش</button></div>
+<div class="result" id="r_darcy"></div>
+</div>
+
+<div class="card">
+<h2>سرعت مخصوص پمپ (Specific Speed)</h2>
+<div class="desc">Ns = N×√Q / H^0.75 — تعیین نوع بهینه پروانه (شعاعی/مختلط/محوری)</div>
+<div class="row">
+ <div class="field"><label>دور پمپ N (rpm)</label><input id="ns_n" type="number"></div>
+ <div class="field"><label>دبی در نقطه کار Q (m³/s)</label><input id="ns_q" type="number" step="0.0001"></div>
+ <div class="field"><label>هد در نقطه کار H (m)</label><input id="ns_h" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcNs()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('ns')">افزودن به گزارش</button></div>
+<div class="result" id="r_ns"></div>
+</div>
+
+</section>
+
+<!-- EARTHING -->
+<section id="tab-earth" class="section">
+
+<div class="card">
+<h2>مقاومت الکترود زمین میله‌ای (Rod Electrode)</h2>
+<div class="desc">R = (ρ / 2πL) × [ln(4L/d) − 1] — روش رایج در راهنماهای Schneider Electric و ABB برای الکترود میله‌ای</div>
+<div class="row">
+ <div class="field"><label>مقاومت مخصوص خاک ρ (Ω·m)</label><input id="eg_rho" type="number" value="100"></div>
+ <div class="field"><label>طول میله L (m)</label><input id="eg_l" type="number" value="2.5"></div>
+ <div class="field"><label>قطر میله d (mm)</label><input id="eg_d" type="number" value="16"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcRod()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('rod')">افزودن به گزارش</button></div>
+<div class="result" id="r_rod"></div>
+</div>
+
+<div class="card">
+<h2>مقاومت الکترود زمین صفحه‌ای (Plate Electrode)</h2>
+<div class="desc">R = ρ / (4×r) که r شعاع معادل صفحه با مساحت A است</div>
+<div class="row">
+ <div class="field"><label>مقاومت مخصوص خاک ρ (Ω·m)</label><input id="pg_rho" type="number" value="100"></div>
+ <div class="field"><label>مساحت صفحه A (m²)</label><input id="pg_a" type="number" value="1"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcPlate()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('plate')">افزودن به گزارش</button></div>
+<div class="result" id="r_plate"></div>
+</div>
+
+<div class="card">
+<h2>مقاومت گروه میله‌های موازی (تقریبی)</h2>
+<div class="desc">Rgroup ≈ R_single / (n × F) — F ضریب بهره‌وری گروه (کمتر از ۱، به‌دلیل تداخل میدان الکترودها)</div>
+<div class="row">
+ <div class="field"><label>مقاومت یک میله R (Ω)</label><input id="pg2_r" type="number" step="0.01"></div>
+ <div class="field"><label>تعداد میله n</label><input id="pg2_n" type="number" value="3"></div>
+ <div class="field"><label>ضریب بهره‌وری F (۰.۵ تا ۱)</label><input id="pg2_f" type="number" value="0.8" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcGroup()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('group')">افزودن به گزارش</button></div>
+<div class="result" id="r_group"></div>
+</div>
+
+<div class="card">
+<h2>ولتاژ تماس مجاز (بررسی سریع)</h2>
+<div class="desc">Ub = Ie × Re — بررسی محدودیت ولتاژ تماس نسبت به آستانه ایمنی</div>
+<div class="row">
+ <div class="field"><label>جریان خطای زمین Ie (A)</label><input id="tv_i" type="number"></div>
+ <div class="field"><label>مقاومت الکترود زمین Re (Ω)</label><input id="tv_r" type="number" step="0.01"></div>
+ <div class="field"><label>آستانه ایمن UL (V)</label><input id="tv_ul" type="number" value="50"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcTouch()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('touch')">افزودن به گزارش</button></div>
+<div class="result" id="r_touch"></div>
+</div>
+
+<div class="card">
+<h2>مقاومت الکترود مش/گرید زمین (Grid — فرمول Sverak/IEEE 80)</h2>
+<div class="desc">Rg = ρ×[1/Lt + (1/√(20A))×(1 + 1/(1+h√(20/A)))] — برای شبکه ارت زمین‌های وسیع (پست/نیروگاه)</div>
+<div class="row">
+ <div class="field"><label>مقاومت مخصوص خاک ρ (Ω·m)</label><input id="gr_rho" type="number" value="100"></div>
+ <div class="field"><label>طول کل هادی مدفون Lt (m)</label><input id="gr_l" type="number"></div>
+ <div class="field"><label>مساحت شبکه A (m²)</label><input id="gr_a" type="number"></div>
+ <div class="field"><label>عمق دفن h (m)</label><input id="gr_h" type="number" value="0.6" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcGrid()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('grid')">افزودن به گزارش</button></div>
+<div class="result" id="r_grid"></div>
+</div>
+
+<div class="card">
+<h2>آزمایش مقاومت مخصوص خاک — روش ونر (۴ میله)</h2>
+<div class="desc">ρ = 2πaR — تبدیل مقاومت اندازه‌گیری‌شده در محل به مقاومت مخصوص خاک</div>
+<div class="row">
+ <div class="field"><label>فاصله میله‌ها a (m)</label><input id="wn_a" type="number" step="0.1"></div>
+ <div class="field"><label>مقاومت اندازه‌گیری‌شده R (Ω)</label><input id="wn_r" type="number" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcWenner()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('wenner')">افزودن به گزارش</button></div>
+<div class="result" id="r_wenner"></div>
+</div>
+
+<div class="card">
+<h2>ولتاژ مجاز تماس و گام (استاندارد IEEE 80)</h2>
+<div class="desc">Etouch=(1000+1.5ρ)×0.116/√ts | Estep=(1000+6ρ)×0.116/√ts — بدون لایه روکش سطحی (حالت پایه/محافظه‌کارانه)</div>
+<div class="row">
+ <div class="field"><label>مقاومت مخصوص خاک ρ (Ω·m)</label><input id="ie_rho" type="number" value="100"></div>
+ <div class="field"><label>زمان قطع خطا ts (s)</label><input id="ie_ts" type="number" value="0.5" step="0.01"></div>
+ <div class="field"><label>وزن بدن مرجع</label><select id="ie_w"><option value="0.116">۵۰ کیلوگرم</option><option value="0.157">۷۰ کیلوگرم</option></select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcIEEE80()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('ieee80')">افزودن به گزارش</button></div>
+<div class="result" id="r_ieee80"></div>
+</div>
+
+<div class="card">
+<h2>بررسی امپدانس حلقه خطا و شرط قطع خودکار</h2>
+<div class="desc">TN: Uo/Zs ≥ Ia | TT: Ra×Ia ≤ 50V — طبق IEC 60364-4-41</div>
+<div class="row">
+ <div class="field"><label>نوع سیستم زمین</label><select id="fl_type"><option value="tn">TN (امپدانس حلقه Zs)</option><option value="tt">TT (مقاومت الکترود Ra)</option></select></div>
+ <div class="field"><label>Zs یا Ra (Ω)</label><input id="fl_z" type="number" step="0.01"></div>
+ <div class="field"><label>ولتاژ فاز Uo (V)</label><input id="fl_uo" type="number" value="230"></div>
+ <div class="field"><label>جریان قطع کلید/RCD, Ia (A)</label><input id="fl_ia" type="number" step="0.001"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcFaultLoop()">بررسی</button>
+ <button class="btn-add" onclick="addLast('faultloop')">افزودن به گزارش</button></div>
+<div class="result" id="r_faultloop"></div>
+</div>
+
+<div class="card">
+<h2>تعداد میله لازم برای مقاومت هدف (طراحی معکوس)</h2>
+<div class="desc">n = R_single / (R_target × F)</div>
+<div class="row">
+ <div class="field"><label>مقاومت هدف Rtarget (Ω)</label><input id="nr_rt" type="number" step="0.1"></div>
+ <div class="field"><label>مقاومت یک میله (Ω)</label><input id="nr_r1" type="number" step="0.01"></div>
+ <div class="field"><label>ضریب بهره‌وری F</label><input id="nr_f" type="number" value="0.8" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcRodCount()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('rodcount')">افزودن به گزارش</button></div>
+<div class="result" id="r_rodcount"></div>
+</div>
+
+<div class="card">
+<h2>سایز هادی حفاظتی PE (روش آدیاباتیک)</h2>
+<div class="desc">S = (I × √t) / k — طبق IEC 60364-5-54، k به جنس و نوع هادی بستگی دارد</div>
+<div class="row">
+ <div class="field"><label>جریان خطا I (A)</label><input id="pe_i" type="number"></div>
+ <div class="field"><label>زمان قطع t (s)</label><input id="pe_t" type="number" value="0.4" step="0.01"></div>
+ <div class="field"><label>جنس/نوع هادی</label><select id="pe_mat">
+   <option value="cu_ins">مس - عایق‌دار (k=115)</option>
+   <option value="cu_bare">مس - بدون عایق (k=159)</option>
+   <option value="al_ins">آلومینیوم - عایق‌دار (k=76)</option>
+   <option value="al_bare">آلومینیوم - بدون عایق (k=105)</option>
+   <option value="steel_bare">فولاد گالوانیزه - بدون عایق (k=58)</option>
+ </select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcPE()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('pe')">افزودن به گزارش</button></div>
+<div class="result" id="r_pe"></div>
+</div>
+
+<div class="card">
+<h2>سایز سیم هم‌بندی اصلی (Main Equipotential Bonding)</h2>
+<div class="desc">حداقل نصف سایز بزرگ‌ترین هادی حفاظتی نصب، حداقل ۶mm² معادل مسی (سقف معمول ۲۵mm² مسی مگر محاسبه بزرگ‌تر لازم باشد)</div>
+<div class="row">
+ <div class="field"><label>سایز بزرگ‌ترین PE نصب (mm²)</label><input id="mb_spe" type="number"></div>
+ <div class="field"><label>جنس/نوع سیم هم‌بندی</label><select id="mb_mat">
+   <option value="cu_ins">مس - عایق‌دار (k=115)</option>
+   <option value="al_ins">آلومینیوم - عایق‌دار (k=76)</option>
+   <option value="cu_bare">مس - بدون عایق (k=159)</option>
+   <option value="al_bare">آلومینیوم - بدون عایق (k=105)</option>
+ </select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcMainBond()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('mbond')">افزودن به گزارش</button></div>
+<div class="result" id="r_mbond"></div>
+</div>
+
+<div class="card">
+<h2>سایز سیم هم‌بندی اضافی (Supplementary Bonding)</h2>
+<div class="desc">بین دو قسمت هادی روباز: حداقل برابر کوچک‌ترین PE متصل | بین قسمت هادی روباز و بیگانه: حداقل نصف PE، حداقل ۲.۵mm² (محافظت‌شده) یا ۴mm² (بدون محافظت)</div>
+<div class="row">
+ <div class="field"><label>نوع اتصال</label><select id="sb_type"><option value="ee">دو قسمت هادی روباز (Exposed-Exposed)</option><option value="ex">روباز به بیگانه (Exposed-Extraneous)</option></select></div>
+ <div class="field"><label>سایز PE مرتبط (mm²)</label><input id="sb_spe" type="number"></div>
+ <div class="field"><label>محافظت مکانیکی دارد؟</label><select id="sb_prot"><option value="yes">بله</option><option value="no">خیر</option></select></div>
+ <div class="field"><label>جنس سیم</label><select id="sb_mat">
+   <option value="cu_ins">مس - عایق‌دار (k=115)</option>
+   <option value="al_ins">آلومینیوم - عایق‌دار (k=76)</option>
+ </select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcSuppBond()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('sbond')">افزودن به گزارش</button></div>
+<div class="result" id="r_sbond"></div>
+</div>
+
+<div class="card">
+<h2>سایز شینه اصلی ارت (Main Earth Bar / Busbar)</h2>
+<div class="desc">S = (I × √t) / k سپس عرض لازم = S / ضخامت شینه</div>
+<div class="row">
+ <div class="field"><label>جریان خطا I (kA)</label><input id="eb_i" type="number" step="0.1"></div>
+ <div class="field"><label>زمان قطع t (s)</label><input id="eb_t" type="number" value="1" step="0.01"></div>
+ <div class="field"><label>جنس شینه</label><select id="eb_mat">
+   <option value="cu_bare">مس (k=159)</option>
+   <option value="al_bare">آلومینیوم (k=105)</option>
+   <option value="steel_bare">فولاد گالوانیزه (k=58)</option>
+ </select></div>
+ <div class="field"><label>ضخامت شینه (mm)</label><input id="eb_th" type="number" value="5"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcEarthBar()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('ebar')">افزودن به گزارش</button></div>
+<div class="result" id="r_ebar"></div>
+</div>
+
+</section>
+
+<!-- INSTRUMENTATION -->
+<section id="tab-inst" class="section">
+
+<div class="card">
+<h2>تبدیل سیگنال ۴-۲۰mA به مقدار مهندسی</h2>
+<div class="desc">مقیاس‌بندی خطی بین حداقل و حداکثر رنج</div>
+<div class="row">
+ <div class="field"><label>جریان ورودی (mA)</label><input id="s1_ma" type="number" value="12"></div>
+ <div class="field"><label>حداقل رنج (EU)</label><input id="s1_min" type="number" value="0"></div>
+ <div class="field"><label>حداکثر رنج (EU)</label><input id="s1_max" type="number" value="100"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcS1()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('s1')">افزودن به گزارش</button></div>
+<div class="result" id="r_s1"></div>
+</div>
+
+<div class="card">
+<h2>تبدیل مقدار مهندسی به سیگنال ۴-۲۰mA</h2>
+<div class="row">
+ <div class="field"><label>مقدار فرآیند (EU)</label><input id="s2_val" type="number"></div>
+ <div class="field"><label>حداقل رنج (EU)</label><input id="s2_min" type="number" value="0"></div>
+ <div class="field"><label>حداکثر رنج (EU)</label><input id="s2_max" type="number" value="100"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcS2()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('s2')">افزودن به گزارش</button></div>
+<div class="result" id="r_s2"></div>
+</div>
+
+<div class="card">
+<h2>دبی اریفیس (رابطه ریشه‌دوم)</h2>
+<div class="desc">Q = Qmax × √(ΔP / ΔPmax) — تبدیل فشار دیفرانسیل به دبی</div>
+<div class="row">
+ <div class="field"><label>ΔP اندازه‌گیری‌شده</label><input id="or_dp" type="number"></div>
+ <div class="field"><label>ΔP max (رنج ترانسمیتر)</label><input id="or_dpmax" type="number"></div>
+ <div class="field"><label>Q max (واحد دلخواه)</label><input id="or_qmax" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcOrifice()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('orifice')">افزودن به گزارش</button></div>
+<div class="result" id="r_orifice"></div>
+</div>
+
+<div class="card">
+<h2>ظرفیت شیر کنترل (Cv) — سیال، جریان غیربحرانی</h2>
+<div class="desc">Cv = Q × √(SG / ΔP)   [Q بر حسب GPM، ΔP بر حسب psi]</div>
+<div class="row">
+ <div class="field"><label>دبی Q (GPM)</label><input id="cv_q" type="number"></div>
+ <div class="field"><label>افت فشار ΔP (psi)</label><input id="cv_dp" type="number"></div>
+ <div class="field"><label>چگالی نسبی SG</label><input id="cv_sg" type="number" value="1" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcCv()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('cv')">افزودن به گزارش</button></div>
+<div class="result" id="r_cv"></div>
+</div>
+
+<div class="card">
+<h2>تیونینگ کنترلر PID (روش Ziegler-Nichols)</h2>
+<div class="desc">بر اساس بهره بحرانی Ku و دوره تناوب بحرانی Pu</div>
+<div class="row">
+ <div class="field"><label>بهره بحرانی Ku</label><input id="pid_ku" type="number"></div>
+ <div class="field"><label>دوره تناوب بحرانی Pu (s)</label><input id="pid_pu" type="number"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcPID()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('pid')">افزودن به گزارش</button></div>
+<div class="result" id="r_pid"></div>
+</div>
+
+<div class="card">
+<h2>اندازه‌گیری سطح هیدرواستاتیک</h2>
+<div class="desc">h = P / (ρ × g) — تبدیل فشار ترانسمیتر به ارتفاع مایع</div>
+<div class="row">
+ <div class="field"><label>فشار P (kPa)</label><input id="lv_p" type="number"></div>
+ <div class="field"><label>چگالی مایع ρ (kg/m³)</label><input id="lv_rho" type="number" value="1000"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcLevel()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('level')">افزودن به گزارش</button></div>
+<div class="result" id="r_level"></div>
+</div>
+
+<div class="card">
+<h2>رمزگشای کد رنگ مقاومت (۴ باند)</h2>
+<div class="desc">انتخاب رنگ باندها برای محاسبه مقدار مقاومت</div>
+<div class="row">
+ <div class="field"><label>باند ۱</label><select id="rc_1"></select></div>
+ <div class="field"><label>باند ۲</label><select id="rc_2"></select></div>
+ <div class="field"><label>ضریب (باند ۳)</label><select id="rc_3"></select></div>
+ <div class="field"><label>تلورانس (باند ۴)</label><select id="rc_4">
+   <option value="±1% (قهوه‌ای)">±۱٪ (قهوه‌ای)</option>
+   <option value="±2% (قرمز)">±۲٪ (قرمز)</option>
+   <option value="±5% (طلایی)" selected>±۵٪ (طلایی)</option>
+   <option value="±10% (نقره‌ای)">±۱۰٪ (نقره‌ای)</option>
+ </select></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcResistor()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('resistor')">افزودن به گزارش</button></div>
+<div class="result" id="r_resistor"></div>
+</div>
+
+<div class="card">
+<h2>تبدیل مقاومت RTD (Pt100/Pt500/Pt1000) به دما</h2>
+<div class="desc">بر اساس استاندارد IEC 60751 (ضریب α=0.00385)، معتبر برای دمای ۰ تا ۸۵۰ درجه سانتی‌گراد</div>
+<div class="row">
+ <div class="field"><label>نوع سنسور</label><select id="rtd_type"><option value="100">Pt100</option><option value="500">Pt500</option><option value="1000">Pt1000</option></select></div>
+ <div class="field"><label>جهت تبدیل</label><select id="rtd_dir"><option value="r2t">مقاومت (Ω) → دما (°C)</option><option value="t2r">دما (°C) → مقاومت (Ω)</option></select></div>
+ <div class="field"><label>مقدار ورودی</label><input id="rtd_val" type="number" step="0.01"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcRTD()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('rtd')">افزودن به گزارش</button></div>
+<div class="result" id="r_rtd"></div>
+</div>
+
+<div class="card">
+<h2>تبدیل ولتاژ ترموکوپل به دما (تقریبی)</h2>
+<div class="desc">تقریب خطی بر اساس حساسیت میانگین نوع سنسور — برای دقت بالا از جداول NIST استفاده شود</div>
+<div class="row">
+ <div class="field"><label>نوع ترموکوپل</label><select id="tc_type">
+   <option value="41">نوع K (~41 µV/°C)</option>
+   <option value="52">نوع J (~52 µV/°C)</option>
+   <option value="43">نوع T (~43 µV/°C)</option>
+   <option value="61">نوع E (~61 µV/°C)</option>
+   <option value="26">نوع N (~26 µV/°C)</option>
+ </select></div>
+ <div class="field"><label>جهت تبدیل</label><select id="tc_dir"><option value="v2t">ولتاژ (mV) → دما (°C)</option><option value="t2v">دما (°C) → ولتاژ (mV)</option></select></div>
+ <div class="field"><label>مقدار ورودی</label><input id="tc_val" type="number" step="0.001"></div>
+</div>
+<div class="btnrow"><button class="btn-calc" onclick="calcTC()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('tc')">افزودن به گزارش</button></div>
+<div class="result" id="r_tc"></div>
+</div>
+
+<div class="card">
+<h2>تبدیل سیگنال آنالوگ به مقدار خام PLC (بر اساس نوع PLC)</h2>
+<div class="desc">مقادیر رایج بر اساس مستندات فنی سازندگان؛ برای ماژول دقیق خود حتماً دیتاشیت را بررسی و در صورت نیاز رنج خام را دستی اصلاح کنید</div>
+<div class="row">
+ <div class="field"><label>نوع PLC</label><select id="plc_type" onchange="fillPlcInfo()">
+   <option value="siemens_s200">Siemens S7-200 (STEP 7 MicroWIN)</option>
+   <option value="siemens_s300400">Siemens S7-300/400 (STEP 7 Classic)</option>
+   <option value="siemens">Siemens S7-1200/1500 (TIA Portal)</option>
+   <option value="siemens_logo">Siemens LOGO! (LOGO!Soft Comfort)</option>
+   <option value="rockwell_plc5">Allen-Bradley PLC-5 (RSLogix 5)</option>
+   <option value="rockwell_slc">Allen-Bradley SLC 500 / MicroLogix (RSLogix 500)</option>
+   <option value="rockwell">Allen-Bradley ControlLogix/CompactLogix (Studio 5000)</option>
+   <option value="schneider">Schneider Modicon (EcoStruxure)</option>
+   <option value="delta">Delta PLC (ISPSoft)</option>
+   <option value="mitsubishi">Mitsubishi FX/Q (GX Works)</option>
+   <option value="omron">Omron CJ/CP/NX (Sysmac)</option>
+   <option value="abb">ABB AC500 (Automation Builder)</option>
+   <option value="gefanuc">GE Fanuc Series 90/RX3i (Proficy)</option>
+   <option value="custom">سفارشی (رنج خام دستی)</option>
+ </select></div>
+ <div class="field"><label>نوع سیگنال ورودی</label><select id="plc_sig"><option value="ma">4-20mA</option><option value="v">0-10V</option></select></div>
+</div>
+<div class="row">
+ <div class="field"><label>حداقل رنج خام PLC</label><input id="plc_rmin" type="number" value="0"></div>
+ <div class="field"><label>حداکثر رنج خام PLC</label><input id="plc_rmax" type="number" value="27648"></div>
+</div>
+<div class="row">
+ <div class="field"><label>مقدار سیگنال ورودی (mA یا V)</label><input id="plc_in" type="number"></div>
+ <div class="field"><label>حداقل رنج مهندسی (EU)</label><input id="plc_eumin" type="number" value="0"></div>
+ <div class="field"><label>حداکثر رنج مهندسی (EU)</label><input id="plc_eumax" type="number" value="100"></div>
+</div>
+<div class="desc" id="plc_note" style="margin-top:-4px"></div>
+<div class="btnrow"><button class="btn-calc" onclick="calcPlcAnalog()">محاسبه</button>
+ <button class="btn-add" onclick="addLast('plc')">افزودن به گزارش</button></div>
+<div class="result" id="r_plc"></div>
+</div>
+
+</section>
+
+<!-- REPORT -->
+<section id="tab-report" class="section">
+<div class="card" id="report-title">
+  <h2 style="text-align:center">گزارش محاسبات مهندسی</h2>
+</div>
+<div class="card">
+<div class="letterhead">
+ <div class="field"><label>نام پروژه</label><input id="rep_proj" placeholder="نام پروژه"></div>
+ <div class="field"><label>نام مهندس</label><input id="rep_eng" placeholder="نام مهندس طراح"></div>
+</div>
+<div id="report-empty">هنوز موردی به گزارش اضافه نشده است. از هر بخش، پس از محاسبه روی «افزودن به گزارش» بزنید.</div>
+<table id="report-table" style="display:none">
+ <thead><tr><th>#</th><th>محاسبه</th><th>ورودی‌ها</th><th>نتیجه</th></tr></thead>
+ <tbody id="report-body"></tbody>
+</table>
+<div class="btnrow">
+ <button class="btn-print" onclick="window.print()">چاپ / خروجی PDF</button>
+ <button class="btn-clear" onclick="clearReport()">پاک‌کردن گزارش</button>
+</div>
+</div>
+</section>
+
+</main>
+
+<script>
+// ==== تنظیمات ثبت‌نام ====
+// در صورت تمایل، آدرس وب‌هوک Google Apps Script یا Formspree را اینجا قرار دهید تا اطلاعات ثبت‌نام برایتان ارسال شود.
+// اگر خالی بماند، اطلاعات فقط روی همان گوشی ذخیره می‌شود.
+const CONFIG = { WEBHOOK_URL: "" };
+
+function checkGate(){
+  try{
+    if(localStorage.getItem('ecalc_registered')==='1'){
+      document.getElementById('gate').style.display='none';
+      document.body.classList.remove('locked');
+    } else {
+      document.body.classList.add('locked');
+    }
+  }catch(e){ document.getElementById('gate').style.display='none'; }
+}
+function submitGate(){
+  const phone=document.getElementById('g_phone').value.trim();
+  const name=document.getElementById('g_name').value.trim();
+  const err=document.getElementById('g_err');
+  if(!phone || phone.length<8){ err.textContent='لطفاً شماره تلفن معتبر وارد کنید'; return; }
+  if(!name || name.length<3){ err.textContent='لطفاً نام و نام خانوادگی را کامل وارد کنید'; return; }
+  err.textContent='';
+  try{
+    localStorage.setItem('ecalc_registered','1');
+    localStorage.setItem('ecalc_phone',phone);
+    localStorage.setItem('ecalc_name',name);
+  }catch(e){}
+  if(CONFIG.WEBHOOK_URL){
+    fetch(CONFIG.WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({phone,name,time:new Date().toISOString()})}).catch(()=>{});
+  }
+  document.getElementById('gate').style.display='none';
+  document.body.classList.remove('locked');
+}
+checkGate();
+function doSearch(q){
+  const box=document.getElementById('searchResults');
+  q=q.trim();
+  if(!q){box.style.display='none';box.innerHTML='';return;}
+  const heads=[...document.querySelectorAll('main section[id^="tab-"] .card h2')];
+  const matches=heads.filter(h=>h.textContent.includes(q));
+  if(matches.length===0){box.innerHTML='<div style="color:var(--muted)">نتیجه‌ای یافت نشد</div>';box.style.display='block';return;}
+  box.innerHTML=matches.slice(0,8).map((h,i)=>`<div onclick="jumpTo(${i})">${h.textContent}</div>`).join('');
+  box.style.display='block';
+  window._searchMatches=matches;
+}
+function jumpTo(i){
+  const h=window._searchMatches[i];
+  const tab=h.closest('section').id.replace('tab-','');
+  showTab(tab);
+  document.getElementById('searchResults').style.display='none';
+  document.getElementById('searchBox').value='';
+  setTimeout(()=>{
+    const card=h.closest('.card');
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+    card.classList.add('flash');
+    setTimeout(()=>card.classList.remove('flash'),1200);
+  },80);
+}
+// بازدارنده ساده از کپی محتوا (سطح پایین، برای کاربر عادی)
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&e.key==='u')){e.preventDefault();}
+});
+</script>
+<script>
+function showTab(t){
+  document.querySelectorAll('.tab').forEach(e=>e.classList.toggle('active',e.dataset.tab===t));
+  document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+}
+function fmt(n){return isFinite(n)? (Math.round(n*1000)/1000).toString() : '—';}
+function show(id,html){const e=document.getElementById(id); e.style.display='block'; e.innerHTML=html;}
+
+let last={};
+
+function calcOhm(){
+  let v=+document.getElementById('oh_v').value, i=+document.getElementById('oh_i').value, r=+document.getElementById('oh_r').value;
+  let vals=[v,i,r], filled=vals.filter(x=>x&&!isNaN(x)&&x!==0).length;
+  if(!v && i && r) v=i*r;
+  else if(!i && v && r) i=v/r;
+  else if(!r && v && i) r=v/i;
+  let p=v*i;
+  show('r_ohm',`ولتاژ=<b>${fmt(v)} V</b> | جریان=<b>${fmt(i)} A</b> | مقاومت=<b>${fmt(r)} Ω</b> | توان=<b>${fmt(p)} W</b>`);
+  last.ohm={name:'قانون اهم و توان', inp:`V=${v||'-'}, I=${i||'-'}, R=${r||'-'}`, res:`V=${fmt(v)}V, I=${fmt(i)}A, R=${fmt(r)}Ω, P=${fmt(p)}W`};
+}
+function calc3P(){
+  let v=+document.getElementById('p3_v').value,i=+document.getElementById('p3_i').value,pf=+document.getElementById('p3_pf').value;
+  let p=Math.sqrt(3)*v*i*pf;
+  show('r_p3',`توان اکتیو = <b>${fmt(p/1000)} kW</b>`);
+  last.p3={name:'توان سه‌فاز', inp:`V=${v}, I=${i}A, cosφ=${pf}`, res:`P=${fmt(p/1000)} kW`};
+}
+function calcVD(){
+  let type=+document.getElementById('vd_type').value, i=+document.getElementById('vd_i').value, l=+document.getElementById('vd_l').value;
+  let r=+document.getElementById('vd_r').value, v=+document.getElementById('vd_v').value, pf=+document.getElementById('vd_pf').value;
+  let k=type===1?2:Math.sqrt(3);
+  let dv=k*i*(r*l/1000)*pf;
+  let pct=(dv/v)*100;
+  show('r_vd',`افت ولتاژ = <b>${fmt(dv)} V</b> (<b>${fmt(pct)}%</b> ${pct>5?'⚠️ بیش از حد مجاز':'✅ در محدوده مجاز'})`);
+  last.vd={name:'افت ولتاژ کابل', inp:`نوع=${type==1?'تک‌فاز':'سه‌فاز'}, I=${i}A, L=${l}m, r=${r}Ω/km`, res:`ΔV=${fmt(dv)}V (${fmt(pct)}%)`};
+}
+function calcPFC(){
+  let p=+document.getElementById('pf_p').value, c1=+document.getElementById('pf_c1').value, c2=+document.getElementById('pf_c2').value;
+  let tan1=Math.tan(Math.acos(c1)), tan2=Math.tan(Math.acos(c2));
+  let qc=p*(tan1-tan2);
+  show('r_pfc',`ظرفیت خازن لازم = <b>${fmt(qc)} kVAR</b>`);
+  last.pfc={name:'اصلاح ضریب توان', inp:`P=${p}kW, cosφ1=${c1}→cosφ2=${c2}`, res:`Qc=${fmt(qc)} kVAR`};
+}
+function calcMotor(){
+  let p=+document.getElementById('mo_p').value,v=+document.getElementById('mo_v').value,pf=+document.getElementById('mo_pf').value,eff=+document.getElementById('mo_eff').value;
+  let i=(p*1000)/(Math.sqrt(3)*v*pf*eff);
+  show('r_motor',`جریان نامی موتور = <b>${fmt(i)} A</b>`);
+  last.motor={name:'جریان موتور سه‌فاز', inp:`P=${p}kW, V=${v}, cosφ=${pf}, η=${eff}`, res:`I=${fmt(i)} A`};
+}
+function calcTrans(){
+  let type=+document.getElementById('tr_type').value, kva=+document.getElementById('tr_kva').value, v=+document.getElementById('tr_v').value;
+  let i = type===3 ? (kva*1000)/(Math.sqrt(3)*v) : (kva*1000)/v;
+  show('r_trans',`جریان نامی = <b>${fmt(i)} A</b>`);
+  last.trans={name:'جریان ترانسفورماتور', inp:`نوع=${type==3?'سه‌فاز':'تک‌فاز'}, S=${kva}kVA, V=${v}V`, res:`I=${fmt(i)} A`};
+}
+function calcS1(){
+  let ma=+document.getElementById('s1_ma').value, mn=+document.getElementById('s1_min').value, mx=+document.getElementById('s1_max').value;
+  let val=mn+((ma-4)/16)*(mx-mn);
+  show('r_s1',`مقدار فرآیند = <b>${fmt(val)}</b>`);
+  last.s1={name:'تبدیل 4-20mA به EU', inp:`I=${ma}mA, رنج ${mn}..${mx}`, res:`Value=${fmt(val)}`};
+}
+function calcS2(){
+  let val=+document.getElementById('s2_val').value, mn=+document.getElementById('s2_min').value, mx=+document.getElementById('s2_max').value;
+  let ma=4+((val-mn)/(mx-mn))*16;
+  show('r_s2',`سیگنال خروجی = <b>${fmt(ma)} mA</b>`);
+  last.s2={name:'تبدیل EU به 4-20mA', inp:`Value=${val}, رنج ${mn}..${mx}`, res:`I=${fmt(ma)} mA`};
+}
+function calcOrifice(){
+  let dp=+document.getElementById('or_dp').value, dpmax=+document.getElementById('or_dpmax').value, qmax=+document.getElementById('or_qmax').value;
+  let q=qmax*Math.sqrt(dp/dpmax);
+  show('r_orifice',`دبی محاسبه‌شده = <b>${fmt(q)}</b> (واحد Qmax)`);
+  last.orifice={name:'دبی اریفیس', inp:`ΔP=${dp}, ΔPmax=${dpmax}, Qmax=${qmax}`, res:`Q=${fmt(q)}`};
+}
+function calcCv(){
+  let q=+document.getElementById('cv_q').value, dp=+document.getElementById('cv_dp').value, sg=+document.getElementById('cv_sg').value;
+  let cv=q*Math.sqrt(sg/dp);
+  show('r_cv',`Cv مورد نیاز = <b>${fmt(cv)}</b>`);
+  last.cv={name:'ظرفیت شیر کنترل Cv', inp:`Q=${q}GPM, ΔP=${dp}psi, SG=${sg}`, res:`Cv=${fmt(cv)}`};
+}
+
+function calcSC(){
+  let v=+document.getElementById('sc_v').value, z=+document.getElementById('sc_z').value;
+  let isc=v/(Math.sqrt(3)*z);
+  show('r_sc',`جریان اتصال کوتاه = <b>${fmt(isc)} A</b>`);
+  last.sc={name:'جریان اتصال کوتاه', inp:`V=${v}, Z=${z}Ω`, res:`Isc=${fmt(isc)} A`};
+}
+const STD_BREAKERS=[6,10,16,20,25,32,40,50,63,80,100,125,160,200,250,320,400,500,630];
+function calcBreaker(){
+  let i=+document.getElementById('br_i').value, k=+document.getElementById('br_k').value;
+  let req=i*k;
+  let sel=STD_BREAKERS.find(x=>x>=req) || STD_BREAKERS[STD_BREAKERS.length-1];
+  show('r_br',`جریان لازم = ${fmt(req)} A → سایز استاندارد پیشنهادی = <b>${sel} A</b>`);
+  last.br={name:'سایز بریکر/فیوز', inp:`I_load=${i}A, k=${k}`, res:`In=${sel} A`};
+}
+function calcLight(){
+  let e=+document.getElementById('li_e').value, a=+document.getElementById('li_a').value;
+  let f=+document.getElementById('li_f').value, uf=+document.getElementById('li_uf').value, mf=+document.getElementById('li_mf').value;
+  let n=(e*a)/(f*uf*mf);
+  show('r_light',`تعداد چراغ مورد نیاز = <b>${Math.ceil(n)} عدد</b> (محاسبه دقیق: ${fmt(n)})`);
+  last.light={name:'محاسبه روشنایی', inp:`E=${e}lux, A=${a}m², Φ=${f}lm, UF=${uf}, MF=${mf}`, res:`N=${Math.ceil(n)} چراغ`};
+}
+const CABLE_SIZES=[1.5,2.5,4,6,10,16,25,35,50,70,95,120,150,185,240,300];
+const CABLE_AMPACITY=[19.5,27,36,46,63,85,112,138,168,213,258,299,344,392,461,530];
+function calcCable(){
+  let i=+document.getElementById('cs_i').value, ca=+document.getElementById('cs_ca').value, cg=+document.getElementById('cs_cg').value;
+  let idesign=i/(ca*cg);
+  let idx=CABLE_AMPACITY.findIndex(x=>x>=idesign);
+  let size = idx===-1 ? '>300 (نیاز به بررسی موازی)' : CABLE_SIZES[idx]+' mm²';
+  show('r_cable',`جریان طراحی = ${fmt(idesign)} A → سایز کابل پیشنهادی (تقریبی) = <b>${size}</b>`);
+  last.cable={name:'سایزینگ کابل', inp:`I_load=${i}A, Ca=${ca}, Cg=${cg}`, res:`I_design=${fmt(idesign)}A, Size≈${size}`};
+}
+function calcPump(){
+  let q=+document.getElementById('pu_q').value, h=+document.getElementById('pu_h').value, sg=+document.getElementById('pu_sg').value, eff=+document.getElementById('pu_eff').value;
+  let p=(q*h*sg)/(367*eff);
+  show('r_pump',`توان پمپ مورد نیاز = <b>${fmt(p)} kW</b>`);
+  last.pump={name:'توان هیدرولیکی پمپ', inp:`Q=${q}m³/h, H=${h}m, SG=${sg}, η=${eff}`, res:`P=${fmt(p)} kW`};
+}
+function calcAffinity(){
+  let n1=+document.getElementById('af_n1').value, n2=+document.getElementById('af_n2').value;
+  let q1=+document.getElementById('af_q1').value, h1=+document.getElementById('af_h1').value, p1=+document.getElementById('af_p1').value;
+  let ratio=n2/n1;
+  let q2=q1*ratio, h2=h1*ratio*ratio, p2=p1*Math.pow(ratio,3);
+  show('r_affinity',`Q2=<b>${fmt(q2)} m³/h</b> | H2=<b>${fmt(h2)} m</b> | P2=<b>${fmt(p2)} kW</b>`);
+  last.affinity={name:'قوانین تشابه پمپ', inp:`N1=${n1}→N2=${n2}, Q1=${q1}, H1=${h1}, P1=${p1}`, res:`Q2=${fmt(q2)}, H2=${fmt(h2)}, P2=${fmt(p2)}`};
+}
+function calcVel(){
+  let q=+document.getElementById('ve_q').value, d=+document.getElementById('ve_d').value;
+  let qm3s=q/3600, dm=d/1000;
+  let area=Math.PI*dm*dm/4;
+  let v=qm3s/area;
+  show('r_vel',`سرعت سیال = <b>${fmt(v)} m/s</b>`);
+  last.vel={name:'سرعت سیال در لوله', inp:`Q=${q}m³/h, D=${d}mm`, res:`V=${fmt(v)} m/s`};
+}
+function calcRe(){
+  let rho=+document.getElementById('re_rho').value, v=+document.getElementById('re_v').value, d=+document.getElementById('re_d').value, mu=+document.getElementById('re_mu').value;
+  let dm=d/1000;
+  let re=(rho*v*dm)/mu;
+  let regime = re<2300 ? 'آرام (Laminar)' : (re<4000?'انتقالی (Transitional)':'متلاطم (Turbulent)');
+  show('r_re',`Re = <b>${fmt(re)}</b> → رژیم: <b>${regime}</b>`);
+  last.re={name:'عدد رینولدز', inp:`ρ=${rho}, V=${v}m/s, D=${d}mm, μ=${mu}`, res:`Re=${fmt(re)} (${regime})`};
+}
+function calcPID(){
+  let ku=+document.getElementById('pid_ku').value, pu=+document.getElementById('pid_pu').value;
+  let p_kp=0.5*ku;
+  let pi_kp=0.45*ku, pi_ti=pu/1.2;
+  let pid_kp=0.6*ku, pid_ti=pu/2, pid_td=pu/8;
+  show('r_pid',`P: Kp=${fmt(p_kp)}<br>PI: Kp=${fmt(pi_kp)}, Ti=${fmt(pi_ti)}s<br>PID: Kp=${fmt(pid_kp)}, Ti=${fmt(pid_ti)}s, Td=${fmt(pid_td)}s`);
+  last.pid={name:'تیونینگ PID (Ziegler-Nichols)', inp:`Ku=${ku}, Pu=${pu}s`, res:`PID: Kp=${fmt(pid_kp)}, Ti=${fmt(pid_ti)}s, Td=${fmt(pid_td)}s`};
+}
+function calcLevel(){
+  let p=+document.getElementById('lv_p').value, rho=+document.getElementById('lv_rho').value;
+  let h=(p*1000)/(rho*9.81);
+  show('r_level',`ارتفاع مایع = <b>${fmt(h)} m</b>`);
+  last.level={name:'اندازه‌گیری سطح هیدرواستاتیک', inp:`P=${p}kPa, ρ=${rho}kg/m³`, res:`h=${fmt(h)} m`};
+}
+
+const STD_ICU=[4.5,6,10,15,20,25,36,50,65,100];
+function calcIcu(){
+  let isc=+document.getElementById('icu_isc').value;
+  let sel=STD_ICU.find(x=>x>=isc) || STD_ICU[STD_ICU.length-1];
+  show('r_icu',`جریان اتصال کوتاه = ${fmt(isc)} kA → حداقل ظرفیت قطع پیشنهادی = <b>Icu ≥ ${sel} kA</b>`);
+  last.icu={name:'ظرفیت قطع بریکر (Icu)', inp:`Isc=${isc}kA`, res:`Icu≥${sel}kA`};
+}
+const CURVE_MULT={B:[3,5],C:[5,10],D:[10,20]};
+function calcCurve(){
+  let inn=+document.getElementById('cu_in').value, t=document.getElementById('cu_type').value;
+  let m=CURVE_MULT[t];
+  let lo=inn*m[0], hi=inn*m[1];
+  let label=t==='B'?'B (روشنایی/مقاومتی)':t==='C'?'C (عمومی/موتور کوچک)':'D (ترانس/موتور اینرش بالا)';
+  show('r_curve',`کلاس منحنی: <b>${label}</b><br>محدوده جریان تریپ لحظه‌ای = <b>${fmt(lo)} تا ${fmt(hi)} A</b>`);
+  last.curve={name:'انتخاب کلاس منحنی تریپ', inp:`In=${inn}A, نوع=${label}`, res:`Trip range=${fmt(lo)}-${fmt(hi)}A`};
+}
+function calcCoord(){
+  let ib=+document.getElementById('co_ib').value, inn=+document.getElementById('co_in').value, iz=+document.getElementById('co_iz').value;
+  let c1=ib<=inn, c2=inn<=iz, i2=1.45*inn, c3=i2<=1.45*iz;
+  let ok=c1&&c2&&c3;
+  show('r_coord',
+    `Ib≤In: ${c1?'✅':'❌'} (${fmt(ib)}≤${fmt(inn)}) | In≤Iz: ${c2?'✅':'❌'} (${fmt(inn)}≤${fmt(iz)}) | I2≤1.45×Iz: ${c3?'✅':'❌'}<br>`+
+    `نتیجه: <b>${ok?'هماهنگی حفاظتی برقرار است ✅':'هماهنگی برقرار نیست ⚠️ — سایز کابل یا کلید را اصلاح کنید'}</b>`);
+  last.coord={name:'هماهنگی حفاظت کابل و کلید', inp:`Ib=${ib}A, In=${inn}A, Iz=${iz}A`, res: ok?'هماهنگ':'ناهماهنگ'};
+}
+function calcBimetal(){
+  let flc=+document.getElementById('bm_flc').value, sf=+document.getElementById('bm_sf').value;
+  let type=document.getElementById('bm_type').value;
+  let imin=flc, imax=flc*sf;
+  if(type==='dol'){
+    show('r_bimetal',`محدوده تنظیم بی‌متال (روی خط اصلی) = <b>${fmt(imin)} تا ${fmt(imax)} A</b>`);
+    last.bimetal={name:'انتخاب بی‌متال موتور (DOL)', inp:`FLC=${flc}A, SF=${sf}`, res:`Iset=${fmt(imin)}-${fmt(imax)}A`};
+  } else {
+    let wmin=imin*0.58, wmax=imax*0.58;
+    show('r_bimetal',`روی خط اصلی = ${fmt(imin)} تا ${fmt(imax)} A<br>روی سیم‌پیچ (دلتا، ۰.۵۸×جریان خط) = <b>${fmt(wmin)} تا ${fmt(wmax)} A</b>`);
+    last.bimetal={name:'انتخاب بی‌متال موتور (Star-Delta)', inp:`FLC=${flc}A, SF=${sf}`, res:`Iset(line)=${fmt(imin)}-${fmt(imax)}A, Iset(winding)=${fmt(wmin)}-${fmt(wmax)}A`};
+  }
+}
+
+function calcMotorStart(){
+  let flc=+document.getElementById('ms_flc').value, k=+document.getElementById('ms_k').value, type=document.getElementById('ms_type').value;
+  let idol=flc*k;
+  if(type==='dol'){
+    show('r_mstart',`جریان راه‌اندازی (DOL) = <b>${fmt(idol)} A</b>`);
+    last.mstart={name:'جریان راه‌اندازی موتور (DOL)', inp:`FLC=${flc}A, k=${k}`, res:`Istart=${fmt(idol)}A`};
+  } else {
+    let isd=idol/3;
+    show('r_mstart',`جریان راه‌اندازی معادل DOL = ${fmt(idol)} A<br>جریان راه‌اندازی خط در حالت ستاره-مثلث ≈ <b>${fmt(isd)} A</b> (حدود ۱/۳ حالت مستقیم)`);
+    last.mstart={name:'جریان راه‌اندازی موتور (Star-Delta)', inp:`FLC=${flc}A, k=${k}`, res:`Istart(line)≈${fmt(isd)}A`};
+  }
+}
+function calcDiscrim(){
+  let up=+document.getElementById('ds_up').value, down=+document.getElementById('ds_down').value;
+  let ratio=up/down;
+  let ok=ratio>=2;
+  show('r_discrim',`نسبت In بالادست/پایین‌دست = <b>${fmt(ratio)}</b> → ${ok?'گزینش‌پذیری کامل محتمل است ✅':'احتمال عدم گزینش‌پذیری ⚠️ — به جدول گزینش‌پذیری سازنده مراجعه شود'}`);
+  last.discrim={name:'بررسی گزینش‌پذیری کلیدها', inp:`In_up=${up}A, In_down=${down}A`, res:`ratio=${fmt(ratio)} (${ok?'قابل قبول':'نیازمند بررسی دقیق'})`};
+}
+function calcRod(){
+  let rho=+document.getElementById('eg_rho').value, l=+document.getElementById('eg_l').value, d=+document.getElementById('eg_d').value/1000;
+  let r=(rho/(2*Math.PI*l))*(Math.log(4*l/d)-1);
+  show('r_rod',`مقاومت الکترود میله‌ای = <b>${fmt(r)} Ω</b>`);
+  last.rod={name:'مقاومت الکترود میله‌ای زمین', inp:`ρ=${rho}Ω·m, L=${l}m, d=${d*1000}mm`, res:`R=${fmt(r)} Ω`};
+}
+function calcPlate(){
+  let rho=+document.getElementById('pg_rho').value, a=+document.getElementById('pg_a').value;
+  let r0=Math.sqrt(a/Math.PI);
+  let r=rho/(4*r0);
+  show('r_plate',`مقاومت الکترود صفحه‌ای = <b>${fmt(r)} Ω</b>`);
+  last.plate={name:'مقاومت الکترود صفحه‌ای زمین', inp:`ρ=${rho}Ω·m, A=${a}m²`, res:`R=${fmt(r)} Ω`};
+}
+function calcGroup(){
+  let r=+document.getElementById('pg2_r').value, n=+document.getElementById('pg2_n').value, f=+document.getElementById('pg2_f').value;
+  let rg=r/(n*f);
+  show('r_group',`مقاومت گروه میله‌ها ≈ <b>${fmt(rg)} Ω</b>`);
+  last.group={name:'مقاومت گروه میله‌های موازی', inp:`R=${r}Ω, n=${n}, F=${f}`, res:`Rgroup≈${fmt(rg)} Ω`};
+}
+function calcTouch(){
+  let i=+document.getElementById('tv_i').value, r=+document.getElementById('tv_r').value, ul=+document.getElementById('tv_ul').value;
+  let ub=i*r;
+  let ok=ub<=ul;
+  show('r_touch',`ولتاژ تماس محاسبه‌شده = <b>${fmt(ub)} V</b> → ${ok?'در محدوده ایمن ✅':'⚠️ بیش از آستانه ایمن، اصلاح سیستم زمین لازم است'}`);
+  last.touch={name:'بررسی ولتاژ تماس مجاز', inp:`Ie=${i}A, Re=${r}Ω, UL=${ul}V`, res:`Ub=${fmt(ub)}V (${ok?'ایمن':'نیازمند اصلاح'})`};
+}
+
+const KVAL={cu_ins:115,cu_bare:159,al_ins:76,al_bare:105,steel_bare:58};
+const MATLBL={cu_ins:'مس-عایق‌دار',cu_bare:'مس-بدون‌عایق',al_ins:'آلومینیوم-عایق‌دار',al_bare:'آلومینیوم-بدون‌عایق',steel_bare:'فولاد گالوانیزه'};
+function calcPE(){
+  let i=+document.getElementById('pe_i').value, t=+document.getElementById('pe_t').value, mat=document.getElementById('pe_mat').value;
+  let k=KVAL[mat];
+  let s=(i*Math.sqrt(t))/k;
+  show('r_pe',`سایز حداقل هادی حفاظتی = <b>${fmt(s)} mm²</b> (جنس: ${MATLBL[mat]}, k=${k})`);
+  last.pe={name:'سایز هادی حفاظتی PE', inp:`I=${i}A, t=${t}s, ${MATLBL[mat]}`, res:`S≥${fmt(s)} mm²`};
+}
+function calcMainBond(){
+  let spe=+document.getElementById('mb_spe').value, mat=document.getElementById('mb_mat').value;
+  let k=KVAL[mat], kcuins=KVAL.cu_ins;
+  let scu=Math.max(6,0.5*spe);
+  let smat=scu*(kcuins/k);
+  let capmat=25*(kcuins/k);
+  show('r_mbond',`معادل مسی = ${fmt(scu)} mm² → سایز پیشنهادی با جنس انتخابی = <b>${fmt(smat)} mm²</b><br>سقف معمول (بدون نیاز به محاسبه دقیق‌تر) ≈ ${fmt(capmat)} mm² معادل ${MATLBL[mat]}`);
+  last.mbond={name:'سیم هم‌بندی اصلی', inp:`S_PE_max=${spe}mm², ${MATLBL[mat]}`, res:`S≥${fmt(smat)} mm²`};
+}
+function calcSuppBond(){
+  let type=document.getElementById('sb_type').value, spe=+document.getElementById('sb_spe').value;
+  let prot=document.getElementById('sb_prot').value, mat=document.getElementById('sb_mat').value;
+  let k=KVAL[mat], kcuins=KVAL.cu_ins;
+  let scu;
+  if(type==='ee'){ scu=spe; }
+  else { let minv= prot==='yes'?2.5:4; scu=Math.max(minv,0.5*spe); }
+  let smat=scu*(kcuins/k);
+  show('r_sbond',`معادل مسی = ${fmt(scu)} mm² → سایز پیشنهادی با جنس انتخابی = <b>${fmt(smat)} mm²</b>`);
+  last.sbond={name:'سیم هم‌بندی اضافی', inp:`نوع=${type==='ee'?'روباز-روباز':'روباز-بیگانه'}, S_PE=${spe}mm², ${MATLBL[mat]}`, res:`S≥${fmt(smat)} mm²`};
+}
+function calcEarthBar(){
+  let i=+document.getElementById('eb_i').value*1000, t=+document.getElementById('eb_t').value, mat=document.getElementById('eb_mat').value, th=+document.getElementById('eb_th').value;
+  let k=KVAL[mat];
+  let s=(i*Math.sqrt(t))/k;
+  let w=s/th;
+  show('r_ebar',`سطح مقطع لازم = ${fmt(s)} mm² → با ضخامت ${th}mm، عرض لازم شینه ≈ <b>${fmt(w)} mm</b>`);
+  last.ebar={name:'سایز شینه اصلی ارت', inp:`I=${i/1000}kA, t=${t}s, ${MATLBL[mat]}, ضخامت=${th}mm`, res:`S=${fmt(s)}mm², عرض≈${fmt(w)}mm`};
+}
+
+function calcYD(){
+  let z=+document.getElementById('yd_z').value, dir=document.getElementById('yd_dir').value;
+  let out = dir==='y2d' ? z*3 : z/3;
+  show('r_yd',`مقدار تبدیل‌شده = <b>${fmt(out)} Ω</b>`);
+  last.yd={name:'تبدیل امپدانس ستاره-مثلث', inp:`Z=${z}Ω, ${dir==='y2d'?'Y→Δ':'Δ→Y'}`, res:`Z'=${fmt(out)}Ω`};
+}
+function calcReactance(){
+  let f=+document.getElementById('rx_f').value, l=+document.getElementById('rx_l').value, c=+document.getElementById('rx_c').value;
+  let parts=[];
+  if(l){ let xl=2*Math.PI*f*(l/1000); parts.push(`XL = <b>${fmt(xl)} Ω</b>`); last.rx_xl=xl; }
+  if(c){ let xc=1/(2*Math.PI*f*(c/1e6)); parts.push(`XC = <b>${fmt(xc)} Ω</b>`); last.rx_xc=xc; }
+  show('r_rx', parts.join(' | ') || 'مقدار L یا C را وارد کنید');
+  last.rx={name:'راکتانس سلفی/خازنی', inp:`f=${f}Hz, L=${l||'-'}mH, C=${c||'-'}µF`, res:parts.join(', ').replace(/<\/?b>/g,'')};
+}
+function calcNeutral(){
+  let a=+document.getElementById('nc_a').value, b=+document.getElementById('nc_b').value, c=+document.getElementById('nc_c').value;
+  let ax=a, ay=0;
+  let bx=b*Math.cos(-2*Math.PI/3), by=b*Math.sin(-2*Math.PI/3);
+  let cx=c*Math.cos(2*Math.PI/3), cy=c*Math.sin(2*Math.PI/3);
+  let sx=ax+bx+cx, sy=ay+by+cy;
+  let in_=Math.sqrt(sx*sx+sy*sy);
+  show('r_neutral',`جریان تخمینی سیم نول = <b>${fmt(in_)} A</b>`);
+  last.neutral={name:'جریان نول (بار نامتعادل)', inp:`Ia=${a}A, Ib=${b}A, Ic=${c}A`, res:`In≈${fmt(in_)} A`};
+}
+function calcEnergyCost(){
+  let p=+document.getElementById('ec_p').value, h=+document.getElementById('ec_h').value, d=+document.getElementById('ec_d').value, r=+document.getElementById('ec_r').value;
+  let kwh=p*h*d;
+  let cost=kwh*r;
+  show('r_ecost',`مصرف انرژی = <b>${fmt(kwh)} kWh</b> → هزینه تخمینی = <b>${fmt(cost)} تومان</b>`);
+  last.ecost={name:'هزینه انرژی برق', inp:`P=${p}kW, ${h}h/day, ${d}days, نرخ=${r}`, res:`E=${fmt(kwh)}kWh, Cost=${fmt(cost)}`};
+}
+function calcConduit(){
+  let d=+document.getElementById('cf_d').value, cd=+document.getElementById('cf_cd').value, n=+document.getElementById('cf_n').value;
+  let areaConduit=Math.PI*d*d/4;
+  let areaCables=n*Math.PI*cd*cd/4;
+  let fillPct=(areaCables/areaConduit)*100;
+  let maxAllowed = n===1?53:n===2?31:40;
+  let ok=fillPct<=maxAllowed;
+  show('r_conduit',`درصد پرشدگی = <b>${fmt(fillPct)}٪</b> (حداکثر مجاز ${maxAllowed}٪) → ${ok?'✅ قابل قبول':'⚠️ بیش از حد مجاز، لوله بزرگ‌تر انتخاب شود'}`);
+  last.conduit={name:'پرشدگی کاندوئیت', inp:`D=${d}mm, d_cable=${cd}mm, n=${n}`, res:`Fill=${fmt(fillPct)}% (max ${maxAllowed}%) ${ok?'OK':'NOT OK'}`};
+}
+function calcKS(){
+  let s=+document.getElementById('ks_s').value, mat=document.getElementById('ks_mat').value, i=+document.getElementById('ks_i').value, t=+document.getElementById('ks_t').value;
+  let k=KVAL[mat];
+  let withstand=Math.pow(k*s,2);
+  let letThrough=i*i*t;
+  let ok=withstand>=letThrough;
+  show('r_ks',`ظرفیت تحمل کابل (k×S)² = ${fmt(withstand)}<br>انرژی عبوری I²t = ${fmt(letThrough)}<br>نتیجه: <b>${ok?'کابل محافظت می‌شود ✅':'⚠️ کابل محافظت نمی‌شود، سایز را افزایش دهید'}</b>`);
+  last.ks={name:'بررسی حفاظت حرارتی کابل (K²S²)', inp:`S=${s}mm², ${MATLBL[mat]}, I=${i}A, t=${t}s`, res: ok?'محافظت‌شده':'محافظت‌نشده'};
+}
+const RCOLORS=[
+ {name:'مشکی',v:0,m:1},{name:'قهوه‌ای',v:1,m:10},{name:'قرمز',v:2,m:100},{name:'نارنجی',v:3,m:1000},
+ {name:'زرد',v:4,m:10000},{name:'سبز',v:5,m:100000},{name:'آبی',v:6,m:1000000},{name:'بنفش',v:7,m:1e7},
+ {name:'خاکستری',v:8,m:1e8},{name:'سفید',v:9,m:1e9},{name:'طلایی',v:null,m:0.1},{name:'نقره‌ای',v:null,m:0.01}
+];
+function fillResistorSelects(){
+  ['rc_1','rc_2'].forEach(id=>{
+    document.getElementById(id).innerHTML=RCOLORS.filter(c=>c.v!==null).map(c=>`<option value="${c.v}">${c.name}</option>`).join('');
+  });
+  document.getElementById('rc_3').innerHTML=RCOLORS.map(c=>`<option value="${c.m}">${c.name}</option>`).join('');
+}
+function calcResistor(){
+  let d1=+document.getElementById('rc_1').value, d2=+document.getElementById('rc_2').value, mult=+document.getElementById('rc_3').value;
+  let tol=document.getElementById('rc_4').value;
+  let val=(d1*10+d2)*mult;
+  let disp = val>=1e6?fmt(val/1e6)+' MΩ' : val>=1000?fmt(val/1000)+' kΩ' : fmt(val)+' Ω';
+  show('r_resistor',`مقدار مقاومت = <b>${disp}</b> (تلورانس ${tol})`);
+  last.resistor={name:'کد رنگ مقاومت', inp:`باندها انتخاب‌شده، ضریب=${mult}`, res:`R=${disp} ${tol}`};
+}
+fillResistorSelects();
+
+function calcCapBank(){
+  let q=+document.getElementById('cb_q').value*1000, v=+document.getElementById('cb_v').value, f=+document.getElementById('cb_f').value, type=document.getElementById('cb_type').value;
+  let ic=q/(Math.sqrt(3)*v);
+  let cDelta=(q/(2*Math.PI*f*v*v))*1e6;
+  let cStar=cDelta*3;
+  let cSel=type==='star'?cStar:cDelta;
+  show('r_capbank',`جریان نامی بانک Ic = <b>${fmt(ic)} A</b><br>ظرفیت خازن هر فاز (${type==='star'?'ستاره':'مثلث'}) = <b>${fmt(cSel)} µF</b><br>(مرجع: Delta=${fmt(cDelta)}µF، Star=${fmt(cStar)}µF)`);
+  last.capbank={name:'سایزینگ بانک خازنی', inp:`Qc=${q/1000}kVAR, V=${v}V, f=${f}Hz, ${type==='star'?'ستاره':'مثلث'}`, res:`Ic=${fmt(ic)}A, C=${fmt(cSel)}µF`};
+}
+function calcResonance(){
+  let ssc=+document.getElementById('rf_ssc').value, qc=+document.getElementById('rf_qc').value, fn=+document.getElementById('rf_fn').value;
+  let ratio=ssc/qc;
+  let fr=fn*Math.sqrt(ratio);
+  let h=fr/fn;
+  const harmonics=[3,5,7,11,13];
+  let closest=harmonics.reduce((a,b)=>Math.abs(b-h)<Math.abs(a-h)?b:a);
+  let danger=Math.abs(closest-h)/closest<0.1;
+  let ipeakMult=Math.sqrt(2*ratio);
+  show('r_resonance',`فرکانس تشدید fr = <b>${fmt(fr)} Hz</b> (مرتبه هارمونیک ≈ ${fmt(h)})<br>نزدیک‌ترین هارمونیک رایج: ${closest}ام → ${danger?'⚠️ خطر تشدید، بررسی رآکتور محدودکننده هارمونیک لازم است':'✅ فاصله ایمن از هارمونیک‌های رایج'}<br>ضریب تخمینی جریان هجومی Ipeak/In ≈ ${fmt(ipeakMult)}`);
+  last.resonance={name:'بررسی فرکانس تشدید هارمونیکی', inp:`Ssc=${ssc}MVA, Qc=${qc}MVAr`, res:`fr=${fmt(fr)}Hz (h≈${fmt(h)}), ${danger?'خطر تشدید':'ایمن'}`};
+}
+function calcDischarge(){
+  let c=+document.getElementById('dr_c').value*1e-6, v=+document.getElementById('dr_v').value, t=+document.getElementById('dr_t').value, vf=+document.getElementById('dr_vf').value;
+  let r=t/(c*Math.log((v*Math.sqrt(2))/vf));
+  show('r_discharge',`مقاومت تخلیه مورد نیاز ≤ <b>${fmt(r)} Ω</b> (برای تخلیه در ${t} ثانیه تا ${vf}V)`);
+  last.discharge={name:'مقاومت تخلیه بانک خازنی', inp:`C=${c*1e6}µF, Un=${v}V, t=${t}s`, res:`R≤${fmt(r)}Ω`};
+}
+function calcCapProtect(){
+  let i=+document.getElementById('cp_i').value, k1=+document.getElementById('cp_k1').value, k2=+document.getElementById('cp_k2').value, k3=+document.getElementById('cp_k3').value;
+  let cont=i*k1, fuse=i*k2, cab=i*k3;
+  show('r_capprotect',`کنتاکتور ≥ <b>${fmt(cont)} A</b> | فیوز ≥ <b>${fmt(fuse)} A</b> | کابل/کلید ≥ <b>${fmt(cab)} A</b>`);
+  last.capprotect={name:'تجهیزات حفاظتی بانک خازنی', inp:`In=${i}A, k_cont=${k1}, k_fuse=${k2}, k_cable=${k3}`, res:`Contactor≥${fmt(cont)}A, Fuse≥${fmt(fuse)}A, Cable≥${fmt(cab)}A`};
+}
+const PLC_INFO={
+ siemens_s200:{raw:[0,32000], sw:'STEP 7 MicroWIN — محاسبه خطی دستی (بدون بلوک اسکیل آماده)', bits:'۱۵ بیت نرمالایز شده (۰ تا ۳۲۰۰۰)'},
+ siemens_s300400:{raw:[0,27648], sw:'STEP 7 Classic (V5.x) — FC105/FC106 یا محاسبه دستی', bits:'۱۵ بیت نرمالایز شده (۰ تا ۲۷۶۴۸)، مشابه نسل جدید'},
+ siemens:{raw:[0,27648], sw:'TIA Portal — بلوک‌های NORM_X و SCALE_X', bits:'۱۵ بیت نرمالایز شده'},
+ siemens_logo:{raw:[0,1000], sw:'LOGO!Soft Comfort — بلوک محاسباتی (فاقد بلوک اسکیل اختصاصی)', bits:'۱۰ بیت نرمالایز شده (۰ تا ۱۰۰۰)، عمدتاً ورودی ۰-۱۰V'},
+ rockwell_plc5:{raw:[-32768,32767], sw:'RSLogix 5 (PLC-5) — دستور SCL', bits:'۱۶ بیت (بسته به ماژول آنالوگ)'},
+ rockwell_slc:{raw:[0,16383], sw:'RSLogix 500 (SLC 500/MicroLogix) — دستور SCL', bits:'۱۴ بیت (۰ تا ۱۶۳۸۳)'},
+ rockwell:{raw:[0,32767], sw:'Studio 5000 — دستور SCP (Scale with Parameters)', bits:'۱۶ بیت (بسته به ماژول)'},
+ schneider:{raw:[0,10000], sw:'EcoStruxure Control Expert — تابع SCALE/XXSCALE', bits:'۱۲ بیت نرمالایز شده (۰ تا ۱۰۰۰۰)'},
+ delta:{raw:[0,4000], sw:'ISPSoft — تبدیل خطی دستی یا SCLP', bits:'۱۲ بیت (۰ تا ۴۰۰۰)'},
+ mitsubishi:{raw:[0,4000], sw:'GX Works — بلوک SCL یا محاسبه دستی', bits:'۱۲ بیت (۰ تا ۴۰۰۰)'},
+ omron:{raw:[0,6000], sw:'Sysmac Studio — Scaling FB', bits:'معمولاً ۰ تا ۶۰۰۰ (بسته به ماژول)'},
+ abb:{raw:[0,27648], sw:'Automation Builder (CoDeSys) — SCALE_X', bits:'۱۵ بیت+علامت، مشابه زیمنس'},
+ gefanuc:{raw:[0,4095], sw:'Proficy Machine Edition / Logicmaster 90 — محاسبه خطی دستی', bits:'۱۲ بیت (۰ تا ۴۰۹۵)'},
+ custom:{raw:[0,0], sw:'-', bits:'رنج خام را دستی وارد کنید'}
+};
+function fillPlcInfo(){
+  let t=document.getElementById('plc_type').value;
+  let info=PLC_INFO[t];
+  if(t!=='custom'){
+    document.getElementById('plc_rmin').value=info.raw[0];
+    document.getElementById('plc_rmax').value=info.raw[1];
+  }
+  document.getElementById('plc_note').textContent=`نرم‌افزار: ${info.sw} | دقت: ${info.bits}`;
+}
+function calcPlcAnalog(){
+  let sig=document.getElementById('plc_sig').value;
+  let inMin=sig==='ma'?4:0, inMax=sig==='ma'?20:10;
+  let val=+document.getElementById('plc_in').value;
+  let rmin=+document.getElementById('plc_rmin').value, rmax=+document.getElementById('plc_rmax').value;
+  let eumin=+document.getElementById('plc_eumin').value, eumax=+document.getElementById('plc_eumax').value;
+  let raw=rmin+((val-inMin)/(inMax-inMin))*(rmax-rmin);
+  let eu=eumin+((raw-rmin)/(rmax-rmin))*(eumax-eumin);
+  show('r_plc',`مقدار خام (Raw) در PLC = <b>${fmt(raw)}</b><br>مقدار مهندسی متناظر = <b>${fmt(eu)}</b>`);
+  last.plc={name:'تبدیل آنالوگ به Raw PLC', inp:`${sig==='ma'?val+'mA':val+'V'}, رنج خام ${rmin}..${rmax}, رنج EU ${eumin}..${eumax}`, res:`Raw=${fmt(raw)}, EU=${fmt(eu)}`};
+}
+fillPlcInfo();
+
+function calcNPSH(){
+  let patm=+document.getElementById('np_patm').value, pvap=+document.getElementById('np_pvap').value, rho=+document.getElementById('np_rho').value;
+  let hs=+document.getElementById('np_hs').value, hf=+document.getElementById('np_hf').value, npshr=+document.getElementById('np_npshr').value;
+  let npsha=((patm-pvap)*1000)/(rho*9.81) + hs - hf;
+  let extra = npshr ? `<br>حاشیه ایمنی نسبت به NPSHr = ${fmt(npsha-npshr)} m → ${npsha>npshr?'✅ ایمن (بدون کاویتاسیون)':'⚠️ خطر کاویتاسیون، طراحی خط مکش را اصلاح کنید'}` : '';
+  show('r_npsh',`NPSH موجود (NPSHa) = <b>${fmt(npsha)} m</b>${extra}`);
+  last.npsh={name:'NPSH موجود (NPSHa)', inp:`Patm=${patm}kPa, Pvap=${pvap}kPa, ρ=${rho}, Hs=${hs}m, Hf=${hf}m`, res:`NPSHa=${fmt(npsha)}m`};
+}
+function calcDarcy(){
+  let l=+document.getElementById('df_l').value, d=+document.getElementById('df_d').value/1000, v=+document.getElementById('df_v').value;
+  let eps=+document.getElementById('df_mat').value/1000, nu=+document.getElementById('df_nu').value;
+  let re=(v*d)/nu;
+  let f=0.25/Math.pow(Math.log10((eps/(3.7*d))+(5.74/Math.pow(re,0.9))),2);
+  let hf=f*(l/d)*(v*v/(2*9.81));
+  show('r_darcy',`عدد رینولدز = ${fmt(re)} | ضریب اصطکاک f = ${fmt(f)}<br>افت هد اصطکاکی = <b>${fmt(hf)} m</b>`);
+  last.darcy={name:'افت اصطکاک لوله (Darcy-Weisbach)', inp:`L=${l}m, D=${d*1000}mm, V=${v}m/s`, res:`hf=${fmt(hf)}m (f=${fmt(f)})`};
+}
+function calcNs(){
+  let n=+document.getElementById('ns_n').value, q=+document.getElementById('ns_q').value, h=+document.getElementById('ns_h').value;
+  let ns=n*Math.sqrt(q)/Math.pow(h,0.75);
+  let type = ns<25?'شعاعی (Radial) — مناسب هد بالا و دبی کم':ns<75?'شعاعی/فرانسیس (Radial-Mixed)':ns<160?'مختلط (Mixed Flow)':'محوری (Axial) — مناسب دبی بالا و هد کم';
+  show('r_ns',`سرعت مخصوص Ns = <b>${fmt(ns)}</b><br>نوع پروانه مناسب: <b>${type}</b>`);
+  last.ns={name:'سرعت مخصوص پمپ', inp:`N=${n}rpm, Q=${q}m³/s, H=${h}m`, res:`Ns=${fmt(ns)} (${type})`};
+}
+function calcRTD(){
+  let r0=+document.getElementById('rtd_type').value, dir=document.getElementById('rtd_dir').value, val=+document.getElementById('rtd_val').value;
+  const A=3.9083e-3, B=-5.775e-7;
+  if(dir==='r2t'){
+    let t=(-A+Math.sqrt(A*A-4*B*(1-val/r0)))/(2*B);
+    show('r_rtd',`دما = <b>${fmt(t)} °C</b>`);
+    last.rtd={name:'RTD مقاومت به دما', inp:`Pt${r0}, R=${val}Ω`, res:`T=${fmt(t)}°C`};
+  } else {
+    let r=r0*(1+A*val+B*val*val);
+    show('r_rtd',`مقاومت متناظر = <b>${fmt(r)} Ω</b>`);
+    last.rtd={name:'RTD دما به مقاومت', inp:`Pt${r0}, T=${val}°C`, res:`R=${fmt(r)}Ω`};
+  }
+}
+function calcTC(){
+  let sens=+document.getElementById('tc_type').value, dir=document.getElementById('tc_dir').value, val=+document.getElementById('tc_val').value;
+  if(dir==='v2t'){
+    let t=(val*1000)/sens;
+    show('r_tc',`دما (تقریبی) = <b>${fmt(t)} °C</b>`);
+    last.tc={name:'ترموکوپل ولتاژ به دما', inp:`V=${val}mV, حساسیت=${sens}µV/°C`, res:`T≈${fmt(t)}°C`};
+  } else {
+    let mv=(val*sens)/1000;
+    show('r_tc',`ولتاژ (تقریبی) = <b>${fmt(mv)} mV</b>`);
+    last.tc={name:'ترموکوپل دما به ولتاژ', inp:`T=${val}°C, حساسیت=${sens}µV/°C`, res:`V≈${fmt(mv)}mV`};
+  }
+}
+function calcUPS(){
+  let p=+document.getElementById('ups_p').value, t=+document.getElementById('ups_t').value, v=+document.getElementById('ups_v').value;
+  let eff=+document.getElementById('ups_eff').value, dod=+document.getElementById('ups_dod').value;
+  let ah=(p*t)/(v*eff*dod);
+  show('r_ups',`ظرفیت باتری مورد نیاز = <b>${fmt(ah)} Ah</b>`);
+  last.ups={name:'سایزینگ باتری UPS', inp:`P=${p}W, t=${t}h, V=${v}V, η=${eff}, DoD=${dod}`, res:`Battery≥${fmt(ah)}Ah`};
+}
+
+function calcGrid(){
+  let rho=+document.getElementById('gr_rho').value, l=+document.getElementById('gr_l').value, a=+document.getElementById('gr_a').value, h=+document.getElementById('gr_h').value;
+  let rg=rho*((1/l)+(1/Math.sqrt(20*a))*(1+1/(1+h*Math.sqrt(20/a))));
+  show('r_grid',`مقاومت شبکه ارت = <b>${fmt(rg)} Ω</b>`);
+  last.grid={name:'مقاومت الکترود مش/گرید (Sverak)', inp:`ρ=${rho}Ω·m, Lt=${l}m, A=${a}m², h=${h}m`, res:`Rg=${fmt(rg)}Ω`};
+}
+function calcWenner(){
+  let a=+document.getElementById('wn_a').value, r=+document.getElementById('wn_r').value;
+  let rho=2*Math.PI*a*r;
+  show('r_wenner',`مقاومت مخصوص خاک = <b>${fmt(rho)} Ω·m</b>`);
+  last.wenner={name:'آزمایش خاک ونر (۴ میله)', inp:`a=${a}m, R=${r}Ω`, res:`ρ=${fmt(rho)}Ω·m`};
+}
+function calcIEEE80(){
+  let rho=+document.getElementById('ie_rho').value, ts=+document.getElementById('ie_ts').value, w=+document.getElementById('ie_w').value;
+  let et=(1000+1.5*rho)*w/Math.sqrt(ts);
+  let es=(1000+6*rho)*w/Math.sqrt(ts);
+  show('r_ieee80',`ولتاژ مجاز تماس Etouch = <b>${fmt(et)} V</b><br>ولتاژ مجاز گام Estep = <b>${fmt(es)} V</b>`);
+  last.ieee80={name:'ولتاژ مجاز تماس/گام (IEEE 80)', inp:`ρ=${rho}Ω·m, ts=${ts}s`, res:`Etouch=${fmt(et)}V, Estep=${fmt(es)}V`};
+}
+function calcFaultLoop(){
+  let type=document.getElementById('fl_type').value, z=+document.getElementById('fl_z').value, uo=+document.getElementById('fl_uo').value, ia=+document.getElementById('fl_ia').value;
+  if(type==='tn'){
+    let ifault=uo/z;
+    let ok=ifault>=ia;
+    show('r_faultloop',`جریان خطای پیش‌بینی‌شده = <b>${fmt(ifault)} A</b> در مقابل Ia=${fmt(ia)}A → ${ok?'✅ شرط قطع خودکار برقرار است':'⚠️ قطع خودکار در زمان لازم تضمین نمی‌شود، Zs را کاهش دهید'}`);
+    last.faultloop={name:'بررسی امپدانس حلقه خطا (TN)', inp:`Zs=${z}Ω, Uo=${uo}V, Ia=${ia}A`, res:`If=${fmt(ifault)}A (${ok?'OK':'NOT OK'})`};
+  } else {
+    let vt=z*ia;
+    let ok=vt<=50;
+    show('r_faultloop',`ولتاژ تماس در خطا = <b>${fmt(vt)} V</b> → ${ok?'✅ کمتر از ۵۰ ولت، ایمن':'⚠️ بیش از ۵۰ ولت، Ra یا Ia را اصلاح کنید'}`);
+    last.faultloop={name:'بررسی مقاومت الکترود (TT)', inp:`Ra=${z}Ω, Ia=${ia}A`, res:`Vtouch=${fmt(vt)}V (${ok?'OK':'NOT OK'})`};
+  }
+}
+function calcRodCount(){
+  let rt=+document.getElementById('nr_rt').value, r1=+document.getElementById('nr_r1').value, f=+document.getElementById('nr_f').value;
+  let n=r1/(rt*f);
+  show('r_rodcount',`تعداد میله لازم ≈ <b>${Math.ceil(n)} عدد</b> (محاسبه دقیق: ${fmt(n)})`);
+  last.rodcount={name:'تعداد میله لازم (طراحی معکوس)', inp:`Rtarget=${rt}Ω, R1=${r1}Ω, F=${f}`, res:`n≈${Math.ceil(n)}`};
+}
+
+let report=[];
+function addLast(key){
+  if(!last[key]){alert('ابتدا محاسبه کنید.');return;}
+  report.push(last[key]);
+  renderReport();
+  showTab('report');
+}
+function renderReport(){
+  const body=document.getElementById('report-body');
+  const empty=document.getElementById('report-empty');
+  const table=document.getElementById('report-table');
+  if(report.length===0){empty.style.display='block';table.style.display='none';return;}
+  empty.style.display='none';table.style.display='table';
+  body.innerHTML=report.map((r,idx)=>`<tr><td>${idx+1}</td><td>${r.name}</td><td>${r.inp}</td><td>${r.res}</td></tr>`).join('');
+}
+function clearReport(){report=[];renderReport();}
+</script>
+</body>
+</html>
